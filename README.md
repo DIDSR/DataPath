@@ -1,3 +1,3 @@
 # DataPath
  
-Whole Slide Image processing Tool 
+Whole Slide Image (WSI) processing Tool 
