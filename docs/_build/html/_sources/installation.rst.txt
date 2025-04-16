@@ -4,9 +4,9 @@ This installation guide provides a detailed explanation and step by step guide t
 
 Required Packages
 --------------------------------------------------------
-In order to use ValidPath, you need to install some python packages. It is recommended to install the same version specified in this section (and in the requirement.txt). 
+In order to use DataPath, you need to install some python packages. It is recommended to install the same version specified in this section (and in the requirement.txt). 
 
-ValidPath was tested on the following environments : 
+DataPath was tested on the following environments : 
 
 •	Linux System (Tested on Ubuntu 18.04.3 LTS) and Python 3.8.8
 
@@ -14,7 +14,7 @@ ValidPath was tested on the following environments :
 
 •	To install a python package with specific version of a package using pip, you can use the syntax “pip install package==version” in the command line. 
 
-For example, in ValidPath we are using lxml which is one of the fastest and feature-rich libraries for processing XML and HTML in Python. 
+For example, in DataPath we are using lxml which is one of the fastest and feature-rich libraries for processing XML and HTML in Python. 
 
 To install lxml version 4.9.1, run the following command:
 
@@ -26,7 +26,7 @@ Please follow the same procedure to install these python packages:
 
 .. code-block:: console
 
-	python -m venv ValidPath
+	python -m venv DataPath
 	pip install lxml==4.9.1
 	pip install opencv-python==4.8.1.78
 	pip install openslide-python==1.1.2
@@ -79,28 +79,28 @@ In order to install Anaconda Navigator, download the Anaconda distribution from 
 
 https://www.anaconda.com/products/distribution
 
-Installing ValidPath using Anaconda
+Installing DataPath using Anaconda
 --------------------------------------------------------
 
 Open a terminal window.
 
 .. code-block:: console
 
-    $ cd ValidPath ROOT DIRECTORY
+    $ cd DataPath ROOT DIRECTORY
 	
-Download a complete copy of the ** ValidPath **.
+Download a complete copy of the ** DataPath **.
 
 .. code-block:: console
 
-    $ git clone https://github.com/mousavikahaki/ValidPath
+    $ git clone https://github.com/mousavikahaki/DataPath
 	
-Change directory to ValidPath
+Change directory to DataPath
 
 .. code-block:: console
 
-    $ cd ValidPath
+    $ cd DataPath
 	
-Create virtual environment for ** ValidPath** using
+Create virtual environment for ** DataPath** using
 
 .. code-block:: console
 
@@ -108,17 +108,17 @@ Create virtual environment for ** ValidPath** using
 	
 .. code-block:: console
 	
-	$ conda activate ValidPath-dev
+	$ conda activate DataPath-dev
 	
 or
 
 .. code-block:: console
 
-    $ conda create -n ValidPath python=3.8 
+    $ conda create -n DataPath python=3.8 
 
 .. code-block:: console
 
-    $ conda activate ValidPath
+    $ conda activate DataPath
 
 .. code-block:: console
 
@@ -129,13 +129,13 @@ To use the packages installed in the environment, run the command:
 
 .. code-block:: console
 
-    $ conda activate ValidPath-dev
+    $ conda activate DataPath-dev
 	
 
-Direct Installation of ValidPath
+Direct Installation of DataPath
 --------------------------------------------------------
 
-You can install required packages and then use pip to install the ValidPath.
+You can install required packages and then use pip to install the DataPath.
 
 Windows
 
@@ -150,11 +150,11 @@ using
     C:\> pip install OpenSlide
 
 3. Install
-ValidPath.
+DataPath.
 
 .. code-block:: console
 
-    C:\> pip install ValidPath
+    C:\> pip install DataPath
 
 Linux (Ubuntu)
 
@@ -174,7 +174,7 @@ You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone https://github.com/mousavikahaki/ValidPath.git
+    $ git clone https://github.com/mousavikahaki/DataPath.git
 	
 after downloading the source code of the slidepro toolbox, you can install it using the following command:
 
@@ -183,4 +183,4 @@ after downloading the source code of the slidepro toolbox, you can install it us
     $ python setup.py install
 
 
-.. _Github repo: https://github.com/mousavikahaki/ValidPath.git
+.. _Github repo: https://github.com/mousavikahaki/DataPath.git

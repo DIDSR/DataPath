@@ -12,7 +12,7 @@ WSI.annotation module
 
 About this module
 --------------------------------------------------------
-This demonstration guides you through the process extracting image regions from the WSI. We achieve this through using ValidPath's Annotation Extractor class. This demonstration should provide you with the instruction to use ValidPath for extracting annotations and the annotation masks.
+This demonstration guides you through the process extracting image regions from the WSI. We achieve this through using DataPath's Annotation Extractor class. This demonstration should provide you with the instruction to use DataPath for extracting annotations and the annotation masks.
 
 .. image:: ../img/ann_extraction.PNG
    :width: 300px

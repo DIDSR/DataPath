@@ -14,7 +14,7 @@ assessment.annotation module
 About this module
 --------------------------------
 
-This demonstration guides you through the process of using ValidPath to generate annotation file for Aperio Image Scope application. This feature enabled using methods included in the ROI class. his module enables generating visualizing the location of the image patches on the WSI file (in Image Scope application). The input to this process is a directory of image patches which the location of each image patch is coded into the file name as <annotation ID>_<WSI File Name>_x_<x coordinate of the image patch>_y_<y coordinate of the image patch>.png
+This demonstration guides you through the process of using DataPath to generate annotation file for Aperio Image Scope application. This feature enabled using methods included in the ROI class. his module enables generating visualizing the location of the image patches on the WSI file (in Image Scope application). The input to this process is a directory of image patches which the location of each image patch is coded into the file name as <annotation ID>_<WSI File Name>_x_<x coordinate of the image patch>_y_<y coordinate of the image patch>.png
 
 
 .. image:: ../img/ann_generator1.PNG

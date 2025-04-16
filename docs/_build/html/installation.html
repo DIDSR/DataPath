@@ -1,22 +1,21 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; ValidPath 2.0.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Installation &mdash; DataPath 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=51b770b3"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -29,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> ValidPath
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DataPath
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -46,17 +49,17 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#required-packages">Required Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation-using-anaconda">Installation Using Anaconda</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installing-validpath-using-anaconda">Installing ValidPath using Anaconda</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#direct-installation-of-validpath">Direct Installation of ValidPath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-datapath-using-anaconda">Installing DataPath using Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#direct-installation-of-datapath">Direct Installation of DataPath</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#from-source">From Source</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="inputrequirements.html">Data (Input/Output) Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="WSI.html">WSI Handler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="annotation.html">Annotation Extraction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="patch.html">Patch Extraction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ann_generator.html">Annotation File Generator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="assessment.html">ML Assessment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="color_normalization.html">Color Normalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tissue_registration.html">Tissue Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stratification.html">Stratification and Dataset Splitting</a></li>
 </ul>
 
         </div>
@@ -65,14 +68,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ValidPath</a>
+          <a href="index.html">DataPath</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Installation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
@@ -84,24 +87,24 @@
            <div itemprop="articleBody">
              
   <section id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
 <p>This installation guide provides a detailed explanation and step by step guide to install packages required for SlidePro toolbox.</p>
 <section id="required-packages">
-<h2>Required Packages<a class="headerlink" href="#required-packages" title="Permalink to this heading"></a></h2>
-<p>In order to use ValidPath, you need to install some python packages. It is recommended to install the same version specified in this section (and in the requirement.txt).</p>
-<p>ValidPath was tested on the following environments :</p>
+<h2>Required Packages<a class="headerlink" href="#required-packages" title="Link to this heading"></a></h2>
+<p>In order to use DataPath, you need to install some python packages. It is recommended to install the same version specified in this section (and in the requirement.txt).</p>
+<p>DataPath was tested on the following environments :</p>
 <ul class="simple">
 <li><p>Linux System (Tested on Ubuntu 18.04.3 LTS) and Python 3.8.8</p></li>
 <li><p>Windows 10 and Python 3.11.5</p></li>
 <li><p>To install a python package with specific version of a package using pip, you can use the syntax “pip install package==version” in the command line.</p></li>
 </ul>
-<p>For example, in ValidPath we are using lxml which is one of the fastest and feature-rich libraries for processing XML and HTML in Python.</p>
+<p>For example, in DataPath we are using lxml which is one of the fastest and feature-rich libraries for processing XML and HTML in Python.</p>
 <p>To install lxml version 4.9.1, run the following command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install lxml==4.9.1</span>
 </pre></div>
 </div>
 <p>Please follow the same procedure to install these python packages:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m venv ValidPath</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m venv DataPath</span>
 <span class="go">pip install lxml==4.9.1</span>
 <span class="go">pip install opencv-python==4.8.1.78</span>
 <span class="go">pip install openslide-python==1.1.2</span>
@@ -135,52 +138,52 @@
 </div>
 </section>
 <section id="installation-using-anaconda">
-<h2>Installation Using Anaconda<a class="headerlink" href="#installation-using-anaconda" title="Permalink to this heading"></a></h2>
+<h2>Installation Using Anaconda<a class="headerlink" href="#installation-using-anaconda" title="Link to this heading"></a></h2>
 <p>Anaconda is a distribution of the Python and R programming languages for scientific computing, that aims to simplify package management and deployment. The distribution includes data-science packages suitable for Windows, Linux, and macOS. Wikipedia</p>
 <p>There are few steps to complete the installation. Firstly, you need to install Anaconda Navigator. This allows you to access to different Python IDEs and Python packages. When you install Anaconda Navigator, you may install your favorite IDEs such as Spider, PyCharm, and etc. You also will be able to create environment to have specific IDEs and Python packages for each project separately. Let’s start with Anaconda Navigator.</p>
 <p>Anaconda Navigator</p>
 <p>In order to install Anaconda Navigator, download the Anaconda distribution from the following URL:</p>
 <p><a class="reference external" href="https://www.anaconda.com/products/distribution">https://www.anaconda.com/products/distribution</a></p>
 </section>
-<section id="installing-validpath-using-anaconda">
-<h2>Installing ValidPath using Anaconda<a class="headerlink" href="#installing-validpath-using-anaconda" title="Permalink to this heading"></a></h2>
+<section id="installing-datapath-using-anaconda">
+<h2>Installing DataPath using Anaconda<a class="headerlink" href="#installing-datapath-using-anaconda" title="Link to this heading"></a></h2>
 <p>Open a terminal window.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> ValidPath ROOT DIRECTORY
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>DataPath<span class="w"> </span>ROOT<span class="w"> </span>DIRECTORY
 </pre></div>
 </div>
-<p>Download a complete copy of the ** ValidPath <a href="#id1"><span class="problematic" id="id2">**</span></a>.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git clone https://github.com/mousavikahaki/ValidPath
+<p>Download a complete copy of the ** DataPath <a href="#id1"><span class="problematic" id="id2">**</span></a>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mousavikahaki/DataPath
 </pre></div>
 </div>
-<p>Change directory to ValidPath</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> ValidPath
+<p>Change directory to DataPath</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>DataPath
 </pre></div>
 </div>
-<p>Create virtual environment for ** ValidPath** using</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda env create -f requirements.dev.conda.yml
+<p>Create virtual environment for ** DataPath** using</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>requirements.dev.conda.yml
 </pre></div>
 </div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda activate ValidPath-dev
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda<span class="w"> </span>activate<span class="w"> </span>DataPath-dev
 </pre></div>
 </div>
 <p>or</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda create -n ValidPath <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>DataPath<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8
 </pre></div>
 </div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda activate ValidPath
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda<span class="w"> </span>activate<span class="w"> </span>DataPath
 </pre></div>
 </div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install -r requirements.txt
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </pre></div>
 </div>
 <p>To use the packages installed in the environment, run the command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda activate ValidPath-dev
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda<span class="w"> </span>activate<span class="w"> </span>DataPath-dev
 </pre></div>
 </div>
 </section>
-<section id="direct-installation-of-validpath">
-<h2>Direct Installation of ValidPath<a class="headerlink" href="#direct-installation-of-validpath" title="Permalink to this heading"></a></h2>
-<p>You can install required packages and then use pip to install the ValidPath.</p>
+<section id="direct-installation-of-datapath">
+<h2>Direct Installation of DataPath<a class="headerlink" href="#direct-installation-of-datapath" title="Link to this heading"></a></h2>
+<p>You can install required packages and then use pip to install the DataPath.</p>
 <p>Windows</p>
 <p>1. Download OpenSlide binaries from <a class="reference external" href="https://openslide.org/download/">this page</a>. Extract the folder and add <code class="docutils literal notranslate"><span class="pre">bin</span></code> and <code class="docutils literal notranslate"><span class="pre">lib</span></code> subdirectories to
 Windows <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14)">system path</a>.</p>
@@ -190,25 +193,25 @@ using</p>
 </pre></div>
 </div>
 <p>3. Install
-ValidPath.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">C:\&gt; pip install ValidPath</span>
+DataPath.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">C:\&gt; pip install DataPath</span>
 </pre></div>
 </div>
 <p>Linux (Ubuntu)</p>
 <p>On Linux the prerequisite software can be installed using the command</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>apt-get -y install libopenjp2-7-dev libopenjp2-tools openslide-tools
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>apt-get<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>libopenjp2-7-dev<span class="w"> </span>libopenjp2-tools<span class="w"> </span>openslide-tools
 </pre></div>
 </div>
 </section>
 <section id="from-source">
-<h2>From Source<a class="headerlink" href="#from-source" title="Permalink to this heading"></a></h2>
+<h2>From Source<a class="headerlink" href="#from-source" title="Link to this heading"></a></h2>
 <p>The source code of the slidepro toolbox can be accessed from the GitHub.</p>
 <p>You can either clone the public repository:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git clone https://github.com/mousavikahaki/ValidPath.git
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mousavikahaki/DataPath.git
 </pre></div>
 </div>
 <p>after downloading the source code of the slidepro toolbox, you can install it using the following command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python setup.py install
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>setup.py<span class="w"> </span>install
 </pre></div>
 </div>
 </section>
@@ -225,7 +228,7 @@ ValidPath.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Seyed Kahaki.</p>
+    <p>&#169; Copyright 2025, Tanviben Patel and Seyed Kahaki.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -1,27 +1,26 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Annotation Extraction &mdash; ValidPath 2.0.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Annotation Extraction &mdash; DataPath 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=51b770b3"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Patch Extraction" href="patch.html" />
-    <link rel="prev" title="WSI Handler" href="WSI.html" /> 
+    <link rel="prev" title="Data (Input/Output) Examples" href="inputrequirements.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -29,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> ValidPath
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DataPath
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -45,7 +48,6 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inputrequirements.html">Data (Input/Output) Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="WSI.html">WSI Handler</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Annotation Extraction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#wsi-annotation-module">WSI.annotation module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#WSI.annotation.AnnotationExtractor"><code class="docutils literal notranslate"><span class="pre">AnnotationExtractor</span></code></a><ul>
@@ -63,8 +65,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="patch.html">Patch Extraction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ann_generator.html">Annotation File Generator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="assessment.html">ML Assessment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="color_normalization.html">Color Normalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tissue_registration.html">Tissue Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stratification.html">Stratification and Dataset Splitting</a></li>
 </ul>
 
         </div>
@@ -73,14 +76,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ValidPath</a>
+          <a href="index.html">DataPath</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Annotation Extraction</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/annotation.rst.txt" rel="nofollow"> View page source</a>
@@ -92,10 +95,10 @@
            <div itemprop="articleBody">
              
   <section id="annotation-extraction">
-<h1>Annotation Extraction<a class="headerlink" href="#annotation-extraction" title="Permalink to this heading"></a></h1>
+<h1>Annotation Extraction<a class="headerlink" href="#annotation-extraction" title="Link to this heading"></a></h1>
 <section id="wsi-annotation-module">
-<h2>WSI.annotation module<a class="headerlink" href="#wsi-annotation-module" title="Permalink to this heading"></a></h2>
-<span class="target" id="module-WSI.annotation"></span><hr class="docutils" />
+<h2>WSI.annotation module<a class="headerlink" href="#wsi-annotation-module" title="Link to this heading"></a></h2>
+<hr class="docutils" id="module-WSI.annotation" />
 <p><strong>Title:</strong>       ValidPath Toolbox - Annotation Extraction Module</p>
 <p><strong>Description:</strong>  This is the Annotation Extraction module for the ValidPath toolbox. It is includes AnnotationExtractor class and several methods.</p>
 <p><strong>Classes:</strong>      AnnotationExtractor</p>
@@ -103,17 +106,17 @@
 <hr class="docutils" />
 <dl class="py class">
 <dt class="sig sig-object py" id="WSI.annotation.AnnotationExtractor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">WSI.annotation.</span></span><span class="sig-name descname"><span class="pre">AnnotationExtractor</span></span><a class="reference internal" href="_modules/WSI/annotation.html#AnnotationExtractor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#WSI.annotation.AnnotationExtractor" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">WSI.annotation.</span></span><span class="sig-name descname"><span class="pre">AnnotationExtractor</span></span><a class="reference internal" href="_modules/WSI/annotation.html#AnnotationExtractor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#WSI.annotation.AnnotationExtractor" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="WSI.annotation.AnnotationExtractor.extract_ann">
-<span class="sig-name descname"><span class="pre">extract_ann</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">XMLs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">WSIs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WSI/annotation.html#AnnotationExtractor.extract_ann"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#WSI.annotation.AnnotationExtractor.extract_ann" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">extract_ann</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">XMLs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">WSIs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WSI/annotation.html#AnnotationExtractor.extract_ann"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#WSI.annotation.AnnotationExtractor.extract_ann" title="Link to this definition"></a></dt>
 <dd><p>This method extracts different types for annotations from Whole Slide Images.
 It can save the extracted annottions to the output directory as defined in inputs.
 This code also handles several annotations per slide. 
 The output directory will be generated based on the strucutr of the input directories.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>save_dir<span class="classifier">string</span></dt><dd><p>The path to the directory in order to save the annotations</p>
 </dd>
@@ -123,7 +126,7 @@ The output directory will be generated based on the strucutr of the input direct
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Image (array) – annotation files</p>
 </dd>
 </dl>
@@ -131,16 +134,16 @@ The output directory will be generated based on the strucutr of the input direct
 
 <dl class="py method">
 <dt class="sig sig-object py" id="WSI.annotation.AnnotationExtractor.make_folder">
-<span class="sig-name descname"><span class="pre">make_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WSI/annotation.html#AnnotationExtractor.make_folder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#WSI.annotation.AnnotationExtractor.make_folder" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">make_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WSI/annotation.html#AnnotationExtractor.make_folder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#WSI.annotation.AnnotationExtractor.make_folder" title="Link to this definition"></a></dt>
 <dd><p>This method creates a directory if not exist.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>directory<span class="classifier">string</span></dt><dd><p>Directory to be created.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>None<span class="classifier">None</span></dt><dd><p>None.</p>
 </dd>
@@ -153,12 +156,13 @@ The output directory will be generated based on the strucutr of the input direct
 
 </section>
 <section id="about-this-module">
-<h2>About this module<a class="headerlink" href="#about-this-module" title="Permalink to this heading"></a></h2>
-<p>This demonstration guides you through the process extracting image regions from the WSI. We achieve this through using ValidPath’s Annotation Extractor class. This demonstration should provide you with the instruction to use ValidPath for extracting annotations and the annotation masks.</p>
-<a class="reference internal image-reference" href="_images/ann_extraction.PNG"><img alt="_images/ann_extraction.PNG" class="align-center" src="_images/ann_extraction.PNG" style="width: 300px;" /></a>
+<h2>About this module<a class="headerlink" href="#about-this-module" title="Link to this heading"></a></h2>
+<p>This demonstration guides you through the process extracting image regions from the WSI. We achieve this through using DataPath’s Annotation Extractor class. This demonstration should provide you with the instruction to use DataPath for extracting annotations and the annotation masks.</p>
+<a class="reference internal image-reference" href="_images/ann_extraction.PNG"><img alt="_images/ann_extraction.PNG" class="align-center" src="_images/ann_extraction.PNG" style="width: 300px;" />
+</a>
 </section>
 <section id="loading-required-packages">
-<h2>Loading Required Packages<a class="headerlink" href="#loading-required-packages" title="Permalink to this heading"></a></h2>
+<h2>Loading Required Packages<a class="headerlink" href="#loading-required-packages" title="Link to this heading"></a></h2>
 <p>This step involves importing various Python modules that are needed for our analysis.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">from WSI.annotation import AnnotationExtractor</span>
 </pre></div>
@@ -170,14 +174,14 @@ The output directory will be generated based on the strucutr of the input direct
 </div>
 </section>
 <section id="read-whole-slide-image-and-xml-files">
-<h2>Read Whole Slide Image and XML files<a class="headerlink" href="#read-whole-slide-image-and-xml-files" title="Permalink to this heading"></a></h2>
+<h2>Read Whole Slide Image and XML files<a class="headerlink" href="#read-whole-slide-image-and-xml-files" title="Link to this heading"></a></h2>
 <p>In this section, we read WSIs and XML files from a given directory and create a list for further processing. Please note that for each WSI file, there should be an XML file containing annotations with the same filename as the WSI filename. For example: Aperio1.svs and Aperio1.xml. In this part, you will also enter and set the output directory which the extracted annotation will be stored.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">dir_file = “C:/Users/data”</span>
 <span class="go">wsis=[]</span>
 <span class="go">xmls=[]</span>
 <span class="go">files = os.listdir(dir_file)</span>
 <span class="go">for i in files :</span>
-<span class="gp">        #</span>extract all wsi files and xml files
+<span class="gp">        #</span>extract<span class="w"> </span>all<span class="w"> </span>wsi<span class="w"> </span>files<span class="w"> </span>and<span class="w"> </span>xml<span class="w"> </span>files
 <span class="go">        if i.endswith(&quot;.svs&quot;)==True :</span>
 <span class="go">                if os.path.exists(dir_file+&#39;\\&#39;+i[:-4]+&quot;.xml&quot;):</span>
 <span class="go">                        wsis.append(i)</span>
@@ -189,10 +193,11 @@ The output directory will be generated based on the strucutr of the input direct
 </pre></div>
 </div>
 <p>After reading the list of WSIs and XML files, you should be able to see the list of loaded files similar to the following output:</p>
-<a class="reference internal image-reference" href="_images/ann_extraction1.PNG"><img alt="_images/ann_extraction1.PNG" class="align-center" src="_images/ann_extraction1.PNG" style="width: 800px;" /></a>
+<a class="reference internal image-reference" href="_images/ann_extraction1.PNG"><img alt="_images/ann_extraction1.PNG" class="align-center" src="_images/ann_extraction1.PNG" style="width: 800px;" />
+</a>
 </section>
 <section id="extracting-annotation">
-<h2>Extracting Annotation<a class="headerlink" href="#extracting-annotation" title="Permalink to this heading"></a></h2>
+<h2>Extracting Annotation<a class="headerlink" href="#extracting-annotation" title="Link to this heading"></a></h2>
 <p>In this section, we will use the extract_ann method of the AnnotationExtractor class to extract the annotations. First, we need to define an object from the AnnotationExtractor class, and call the extract_ann method. There are three inputs required to call the extract_ann method which are, &lt;save directory&gt;, &lt;a variable with list of XMLs&gt;, and &lt;a variable with list of WSIs&gt;. These variables are defined in the previous section (Read Whole Slide Image and XML files).</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">AnnotationExtractor.extract_ann (Save_dir: str,XMLs: array , WSIs: array) → Image</span>
 
@@ -206,20 +211,22 @@ The output directory will be generated based on the strucutr of the input direct
 </pre></div>
 </div>
 <p>This will plot each extracted annotation in the output similar to the following:</p>
-<a class="reference internal image-reference" href="_images/ann_extraction2.PNG"><img alt="_images/ann_extraction2.PNG" class="align-center" src="_images/ann_extraction2.PNG" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="_images/ann_extraction2.PNG"><img alt="_images/ann_extraction2.PNG" class="align-center" src="_images/ann_extraction2.PNG" style="width: 300px;" />
+</a>
 </section>
 <section id="extracting-annotation-and-mask">
-<h2>Extracting Annotation and Mask<a class="headerlink" href="#extracting-annotation-and-mask" title="Permalink to this heading"></a></h2>
+<h2>Extracting Annotation and Mask<a class="headerlink" href="#extracting-annotation-and-mask" title="Link to this heading"></a></h2>
 <p>The extract_ann method of the AnnotationExtractor class allows you to extract both annotations and the mask at the same time and save them into the save directory as specified earlier. For this goal, you can run the following code and setting the save_mask parameter to “True” as follows.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ann = AnnotationExtractor()</span>
 <span class="go">Visualization = True</span>
 <span class="go">save_mask = True</span>
-<span class="gp">#</span>Extracting all annotations and their mask save them <span class="k">in</span> the save directory and plotting.
+<span class="gp">#</span>Extracting<span class="w"> </span>all<span class="w"> </span>annotations<span class="w"> </span>and<span class="w"> </span>their<span class="w"> </span>mask<span class="w"> </span>save<span class="w"> </span>them<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>save<span class="w"> </span>directory<span class="w"> </span>and<span class="w"> </span>plotting.
 <span class="go">ann.extract_ann (save_dir ,XMLs_ , WSIs_,Visualization,save_mask)</span>
 </pre></div>
 </div>
 <p>running this code will extract both annotations and corresponding mask, save them into the save directory and visualize the mask and annotation in the output similar to the following screenshot.</p>
-<a class="reference internal image-reference" href="_images/ann_extraction3.PNG"><img alt="_images/ann_extraction3.PNG" class="align-center" src="_images/ann_extraction3.PNG" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="_images/ann_extraction3.PNG"><img alt="_images/ann_extraction3.PNG" class="align-center" src="_images/ann_extraction3.PNG" style="width: 300px;" />
+</a>
 </section>
 </section>
 
@@ -227,14 +234,14 @@ The output directory will be generated based on the strucutr of the input direct
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="WSI.html" class="btn btn-neutral float-left" title="WSI Handler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inputrequirements.html" class="btn btn-neutral float-left" title="Data (Input/Output) Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="patch.html" class="btn btn-neutral float-right" title="Patch Extraction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Seyed Kahaki.</p>
+    <p>&#169; Copyright 2025, Tanviben Patel and Seyed Kahaki.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

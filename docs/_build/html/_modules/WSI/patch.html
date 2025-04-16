@@ -1,21 +1,20 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WSI.patch &mdash; ValidPath 2.0.0 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>WSI.patch &mdash; DataPath 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -26,11 +25,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> ValidPath
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            DataPath
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -42,11 +45,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../inputrequirements.html">Data (Input/Output) Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../WSI.html">WSI Handler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../annotation.html">Annotation Extraction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../patch.html">Patch Extraction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ann_generator.html">Annotation File Generator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../assessment.html">ML Assessment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../color_normalization.html">Color Normalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tissue_registration.html">Tissue Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stratification.html">Stratification and Dataset Splitting</a></li>
 </ul>
 
         </div>
@@ -55,14 +58,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">ValidPath</a>
+          <a href="../../index.html">DataPath</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
       <li class="breadcrumb-item active">WSI.patch</li>
       <li class="wy-breadcrumbs-aside">
@@ -102,12 +105,11 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
 <span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imsave</span><span class="p">,</span> <span class="n">imread</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="c1">#from PIL import Image</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
-<span class="c1">#import openslide</span>
-<span class="c1">#Sfrom openslide.deepzoom import DeepZoomGenerator</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">openslide</span>
+<span class="kn">from</span> <span class="nn">openslide.deepzoom</span> <span class="kn">import</span> <span class="n">DeepZoomGenerator</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">tifffile</span> <span class="k">as</span> <span class="nn">tiff</span>
 <span class="kn">import</span> <span class="nn">random</span>
@@ -116,7 +118,7 @@
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Point</span>
 <span class="c1">#from readwsi.normalization import Normalization</span>
 <span class="c1">#from readwsi import normalization</span>
-<span class="kn">import</span> <span class="nn">PIL</span>
+<span class="c1">#import PIL</span>
 <span class="kn">import</span> <span class="nn">h5py</span>
 <span class="c1">#import sys</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -124,11 +126,15 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>     
             
             
-<div class="viewcode-block" id="WSIpatch_extractor"><a class="viewcode-back" href="../../patch.html#WSI.patch.WSIpatch_extractor">[docs]</a><span class="k">class</span> <span class="nc">WSIpatch_extractor</span><span class="p">:</span>
+<div class="viewcode-block" id="WSIpatch_extractor">
+<a class="viewcode-back" href="../../patch.html#WSI.patch.WSIpatch_extractor">[docs]</a>
+<span class="k">class</span> <span class="nc">WSIpatch_extractor</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
-<div class="viewcode-block" id="WSIpatch_extractor.patch_extraction"><a class="viewcode-back" href="../../patch.html#WSI.patch.WSIpatch_extractor.patch_extraction">[docs]</a>    <span class="k">def</span> <span class="nf">patch_extraction</span><span class="p">(</span><span class="n">wsi_obj</span><span class="p">,</span><span class="n">patch_size</span><span class="p">,</span><span class="n">output_folder</span><span class="p">,</span><span class="n">random_state</span><span class="p">,</span><span class="n">visualize</span><span class="p">,</span><span class="n">intensity_check</span><span class="p">,</span><span class="n">intensity_threshold</span><span class="p">,</span><span class="n">std_threshold</span><span class="p">,</span><span class="n">patch_number</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="WSIpatch_extractor.patch_extraction">
+<a class="viewcode-back" href="../../patch.html#WSI.patch.WSIpatch_extractor.patch_extraction">[docs]</a>
+    <span class="k">def</span> <span class="nf">patch_extraction</span><span class="p">(</span><span class="n">wsi_obj</span><span class="p">,</span><span class="n">patch_size</span><span class="p">,</span><span class="n">output_folder</span><span class="p">,</span><span class="n">random_state</span><span class="p">,</span><span class="n">visualize</span><span class="p">,</span><span class="n">intensity_check</span><span class="p">,</span><span class="n">intensity_threshold</span><span class="p">,</span><span class="n">std_threshold</span><span class="p">,</span><span class="n">patch_number</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        this function  Generate object for tiles using the DeepZoomGenerator and divided </span>
 <span class="sd">        the svs file into tiles of size 256 with no overlap.</span>
 <span class="sd">        then  processing and saving each tile to local directory.</span>
@@ -239,9 +245,12 @@
                            
                             <span class="n">flag_counter</span> <span class="o">=</span> <span class="kc">False</span>
                             <span class="k">break</span></div>
+
         
         
-<div class="viewcode-block" id="WSIpatch_extractor.patch_extraction_of_tissue"><a class="viewcode-back" href="../../patch.html#WSI.patch.WSIpatch_extractor.patch_extraction_of_tissue">[docs]</a>    <span class="k">def</span> <span class="nf">patch_extraction_of_tissue</span><span class="p">(</span><span class="n">slidepath</span><span class="p">,</span><span class="n">patch_size</span> <span class="p">,</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">number_of_patches</span><span class="o">=</span><span class="mi">1</span> <span class="p">,</span> <span class="n">vis</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="WSIpatch_extractor.patch_extraction_of_tissue">
+<a class="viewcode-back" href="../../patch.html#WSI.patch.WSIpatch_extractor.patch_extraction_of_tissue">[docs]</a>
+    <span class="k">def</span> <span class="nf">patch_extraction_of_tissue</span><span class="p">(</span><span class="n">slidepath</span><span class="p">,</span><span class="n">patch_size</span> <span class="p">,</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">number_of_patches</span><span class="o">=</span><span class="mi">1</span> <span class="p">,</span> <span class="n">vis</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         
         <span class="c1"># vis   =   visualize state , if it is True == output will be displayed</span>
         <span class="n">std_threshold</span> <span class="o">=</span> <span class="mi">15</span>
@@ -334,10 +343,13 @@
                 
                 
             <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
             
             
-<div class="viewcode-block" id="WSIpatch_extractor.patch_extraction_with_normalized_tiles"><a class="viewcode-back" href="../../patch.html#WSI.patch.WSIpatch_extractor.patch_extraction_with_normalized_tiles">[docs]</a>    <span class="k">def</span> <span class="nf">patch_extraction_with_normalized_tiles</span><span class="p">(</span><span class="n">wsi_obj</span><span class="p">,</span><span class="n">patch_size</span><span class="p">,</span><span class="n">output_folder</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="kc">True</span> <span class="p">,</span><span class="n">patch_number</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="WSIpatch_extractor.patch_extraction_with_normalized_tiles">
+<a class="viewcode-back" href="../../patch.html#WSI.patch.WSIpatch_extractor.patch_extraction_with_normalized_tiles">[docs]</a>
+    <span class="k">def</span> <span class="nf">patch_extraction_with_normalized_tiles</span><span class="p">(</span><span class="n">wsi_obj</span><span class="p">,</span><span class="n">patch_size</span><span class="p">,</span><span class="n">output_folder</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="kc">True</span> <span class="p">,</span><span class="n">patch_number</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            this function  Generate object for tiles using the DeepZoomGenerator and divided </span>
 <span class="sd">            the svs file into tiles of size 256 with no overlap.</span>
 <span class="sd">            then  processing and saving each tile to local directory.</span>
@@ -456,23 +468,32 @@
                                 <span class="k">break</span>
 
 
-            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div></div>
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+</div>
+
             
 
-<div class="viewcode-block" id="PatchExtractor"><a class="viewcode-back" href="../../patch.html#WSI.patch.PatchExtractor">[docs]</a><span class="k">class</span> <span class="nc">PatchExtractor</span> <span class="p">:</span>
+<div class="viewcode-block" id="PatchExtractor">
+<a class="viewcode-back" href="../../patch.html#WSI.patch.PatchExtractor">[docs]</a>
+<span class="k">class</span> <span class="nc">PatchExtractor</span> <span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
     
-<div class="viewcode-block" id="PatchExtractor.find_between"><a class="viewcode-back" href="../../patch.html#WSI.patch.PatchExtractor.find_between">[docs]</a>    <span class="k">def</span> <span class="nf">find_between</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="p">):</span>
+<div class="viewcode-block" id="PatchExtractor.find_between">
+<a class="viewcode-back" href="../../patch.html#WSI.patch.PatchExtractor.find_between">[docs]</a>
+    <span class="k">def</span> <span class="nf">find_between</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">start</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">(</span> <span class="n">first</span> <span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span> <span class="n">first</span> <span class="p">)</span>
             <span class="n">end</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">(</span> <span class="n">last</span><span class="p">,</span> <span class="n">start</span> <span class="p">)</span>
             <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+
     
-<div class="viewcode-block" id="PatchExtractor.gen_patch"><a class="viewcode-back" href="../../patch.html#WSI.patch.PatchExtractor.gen_patch">[docs]</a>    <span class="k">def</span> <span class="nf">gen_patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">INPUTDIR</span><span class="p">,</span><span class="n">PatchSize</span><span class="p">,</span><span class="n">Number_of_Patches</span><span class="p">,</span><span class="n">intensity_check</span><span class="p">,</span><span class="n">intensity_threshold</span><span class="p">,</span><span class="n">OUTPUTDIR</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="PatchExtractor.gen_patch">
+<a class="viewcode-back" href="../../patch.html#WSI.patch.PatchExtractor.gen_patch">[docs]</a>
+    <span class="k">def</span> <span class="nf">gen_patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">INPUTDIR</span><span class="p">,</span><span class="n">PatchSize</span><span class="p">,</span><span class="n">Number_of_Patches</span><span class="p">,</span><span class="n">intensity_check</span><span class="p">,</span><span class="n">intensity_threshold</span><span class="p">,</span><span class="n">OUTPUTDIR</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This function extracts a number of pactches from extracted annotations.</span>
 <span class="sd">        It can save the extracted annottions to the output directory as defined in inputs.</span>
 <span class="sd">        Before running this function, please call annotation.ann_extractor.extract_ann(save_dir, XMLs, WSIs) to generate annotations. </span>
@@ -646,7 +667,9 @@
                             <span class="n">done</span><span class="o">=</span><span class="kc">False</span> 
 
         <span class="k">if</span><span class="p">(</span><span class="n">save_hdf5</span><span class="o">==</span><span class="kc">True</span><span class="p">):</span>
-            <span class="n">dataset</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
+            <span class="n">dataset</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+</div>
+
 	
 	
 	
@@ -659,7 +682,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Seyed Kahaki.</p>
+    <p>&#169; Copyright 2025, Tanviben Patel and Seyed Kahaki.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

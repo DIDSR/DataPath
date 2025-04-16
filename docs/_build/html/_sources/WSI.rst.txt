@@ -13,7 +13,7 @@ WSI.readwsi module
 About this module
 --------------------------------------------------------
 
-This demonstration guides you through the process of utilizing ValidPath to interact with a whole slide image (WSI). The objective is to provide you with an understanding of how to load a WSI, extract relevant information, and subsequently retrieve WSI sub image. In the first part of this demo, we focus on loading a sample WSI. This involves utilizing ValidPath's built-in functions to successfully read the image file. These functions are designed to handle the complexities of WSI files, which can be vast and multi-layered, ensuring that the image is loaded. 
+This demonstration guides you through the process of utilizing DataPath to interact with a whole slide image (WSI). The objective is to provide you with an understanding of how to load a WSI, extract relevant information, and subsequently retrieve WSI sub image. In the first part of this demo, we focus on loading a sample WSI. This involves utilizing DataPath's built-in functions to successfully read the image file. These functions are designed to handle the complexities of WSI files, which can be vast and multi-layered, ensuring that the image is loaded. 
 After successfully loading the WSI, we proceed to extract key information about the image. This involves identifying and WSI characteristics such as the WSI's dimensions, the number of image layers, and the magnification levels. By understanding these attributes, we can more effectively analyze the slide and extract relevant sections for further study. Let’s start with the environment configuration.
 
 
@@ -109,7 +109,7 @@ after running the code and provide the x and y size of the thumbnail and plot it
  
 Extract WSI Region
 --------------------------------------------------------
-The next stage of this demonstration involves extracting image regions from the WSI. We achieve this through using ValidPath's extract_region method. This is a critical step as it enables us to focus on specific areas of the slide, which can then be subjected to detailed analysis.
+The next stage of this demonstration involves extracting image regions from the WSI. We achieve this through using DataPath's extract_region method. This is a critical step as it enables us to focus on specific areas of the slide, which can then be subjected to detailed analysis.
 .. code-block:: console
 
 	WSIReader. extract_region(WSI_Obj: object, Region_location: tuple, WSI_level: int, Region_size: tuple) → Image

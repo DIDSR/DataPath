@@ -1,21 +1,20 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WSI.readwsi &mdash; ValidPath 2.0.0 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>WSI.readwsi &mdash; DataPath 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -26,11 +25,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> ValidPath
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            DataPath
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -42,11 +45,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../inputrequirements.html">Data (Input/Output) Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../WSI.html">WSI Handler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../annotation.html">Annotation Extraction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../patch.html">Patch Extraction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ann_generator.html">Annotation File Generator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../assessment.html">ML Assessment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../color_normalization.html">Color Normalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tissue_registration.html">Tissue Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stratification.html">Stratification and Dataset Splitting</a></li>
 </ul>
 
         </div>
@@ -55,14 +58,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">ValidPath</a>
+          <a href="../../index.html">DataPath</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
       <li class="breadcrumb-item active">WSI.readwsi</li>
       <li class="wy-breadcrumbs-aside">
@@ -104,31 +107,34 @@
 <span class="sd">---------------------------------------------------------------------------</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">cv2</span>
-<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imsave</span><span class="p">,</span> <span class="n">imread</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="c1">#import numpy as np</span>
+<span class="c1">#import cv2</span>
+<span class="c1">#from skimage.io import imsave, imread</span>
+<span class="c1">#from PIL import Image</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
-<span class="c1">#import openslide</span>
-<span class="c1">#Sfrom openslide.deepzoom import DeepZoomGenerator</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">import</span> <span class="nn">tifffile</span> <span class="k">as</span> <span class="nn">tiff</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1">#from glob import glob</span>
+<span class="kn">import</span> <span class="nn">openslide</span>
+<span class="c1">#from openslide.deepzoom import DeepZoomGenerator</span>
+<span class="c1">#from pathlib import Path</span>
+<span class="c1">#import tifffile as tiff</span>
+<span class="c1">#import random</span>
+<span class="c1">#import matplotlib.pyplot as plt</span>
 <span class="c1">#from readwsi.TissueSegmentation import TissueSegmentation</span>
-<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Point</span>
+<span class="c1">#from shapely.geometry import Polygon, Point</span>
 <span class="c1">#from readwsi.normalization import Normalization</span>
 <span class="c1">#from readwsi import normalization</span>
-<span class="kn">import</span> <span class="nn">PIL</span>
+<span class="c1">#import PIL</span>
 
-<div class="viewcode-block" id="WSIReader"><a class="viewcode-back" href="../../WSI.html#WSI.readwsi.WSIReader">[docs]</a><span class="k">class</span> <span class="nc">WSIReader</span><span class="p">:</span>
+<div class="viewcode-block" id="WSIReader">
+<a class="viewcode-back" href="../../wsi.html#WSI.readwsi.WSIReader">[docs]</a>
+<span class="k">class</span> <span class="nc">WSIReader</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>  
   
-<div class="viewcode-block" id="WSIReader.extract_region"><a class="viewcode-back" href="../../WSI.html#WSI.readwsi.WSIReader.extract_region">[docs]</a>    <span class="k">def</span> <span class="nf">extract_region</span><span class="p">(</span><span class="n">wsi_obj</span><span class="p">,</span><span class="n">location</span><span class="p">,</span><span class="n">level</span><span class="p">,</span><span class="n">size</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="WSIReader.extract_region">
+<a class="viewcode-back" href="../../wsi.html#WSI.readwsi.WSIReader.extract_region">[docs]</a>
+    <span class="k">def</span> <span class="nf">extract_region</span><span class="p">(</span><span class="n">wsi_obj</span><span class="p">,</span><span class="n">location</span><span class="p">,</span><span class="n">level</span><span class="p">,</span><span class="n">size</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method process the WSIs and extract regions.</span>
 <span class="sd">        </span>
 <span class="sd">      </span>
@@ -144,9 +150,12 @@
         <span class="c1">#Levels are numbered from 0 (highest resolution) to level_count - 1 (lowest resolution).</span>
         
         <span class="k">return</span> <span class="n">wsi_obj</span><span class="o">.</span><span class="n">read_region</span><span class="p">(</span><span class="n">location</span><span class="p">,</span><span class="n">level</span><span class="p">,</span><span class="n">size</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span></div>
+
     
-<div class="viewcode-block" id="WSIReader.extract_bounds"><a class="viewcode-back" href="../../WSI.html#WSI.readwsi.WSIReader.extract_bounds">[docs]</a>    <span class="k">def</span> <span class="nf">extract_bounds</span><span class="p">(</span><span class="n">wsi_obj</span><span class="p">,</span><span class="n">bounds</span><span class="p">,</span><span class="n">level</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="WSIReader.extract_bounds">
+<a class="viewcode-back" href="../../wsi.html#WSI.readwsi.WSIReader.extract_bounds">[docs]</a>
+    <span class="k">def</span> <span class="nf">extract_bounds</span><span class="p">(</span><span class="n">wsi_obj</span><span class="p">,</span><span class="n">bounds</span><span class="p">,</span><span class="n">level</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method process the WSIs and extract image.</span>
 <span class="sd">        </span>
 <span class="sd">        :Parameters:</span>
@@ -176,10 +185,13 @@
         <span class="n">location</span> <span class="o">=</span> <span class="p">(</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">,</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span>
         
         <span class="k">return</span> <span class="n">wsi_obj</span><span class="o">.</span><span class="n">read_region</span><span class="p">(</span><span class="n">location</span><span class="p">,</span><span class="n">level</span><span class="p">,</span><span class="n">size</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span></div>
+
         
     
-<div class="viewcode-block" id="WSIReader.wsi_xml_list"><a class="viewcode-back" href="../../WSI.html#WSI.readwsi.WSIReader.wsi_xml_list">[docs]</a>    <span class="k">def</span> <span class="nf">wsi_xml_list</span> <span class="p">(</span><span class="n">wsis_dir</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="WSIReader.wsi_xml_list">
+<a class="viewcode-back" href="../../wsi.html#WSI.readwsi.WSIReader.wsi_xml_list">[docs]</a>
+    <span class="k">def</span> <span class="nf">wsi_xml_list</span> <span class="p">(</span><span class="n">wsis_dir</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This code process the WSIs and XML list and returns these lists.</span>
 <span class="sd">        Only WSI are included if there is an XML file with the same name.</span>
 <span class="sd">      </span>
@@ -213,8 +225,11 @@
         <span class="k">return</span> <span class="p">(</span><span class="n">WSIs</span><span class="p">,</span> <span class="n">xml_</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="WSIReader.wsi_reader"><a class="viewcode-back" href="../../WSI.html#WSI.readwsi.WSIReader.wsi_reader">[docs]</a>    <span class="k">def</span> <span class="nf">wsi_reader</span><span class="p">(</span><span class="n">WSI_path</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="WSIReader.wsi_reader">
+<a class="viewcode-back" href="../../wsi.html#WSI.readwsi.WSIReader.wsi_reader">[docs]</a>
+    <span class="k">def</span> <span class="nf">wsi_reader</span><span class="p">(</span><span class="n">WSI_path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This code read a WSI and return the WSI object.</span>
 <span class="sd">        This code can read the WSIs with the following formats:</span>
 <span class="sd">        Aperio (.svs, .tif)</span>
@@ -239,7 +254,9 @@
 
         <span class="n">wsi_obj</span> <span class="o">=</span> <span class="n">openslide</span><span class="o">.</span><span class="n">OpenSlide</span><span class="p">(</span><span class="n">WSI_path</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="p">(</span><span class="n">wsi_obj</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="p">(</span><span class="n">wsi_obj</span><span class="p">)</span></div>
+</div>
+
 
 
 
@@ -255,7 +272,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Seyed Kahaki.</p>
+    <p>&#169; Copyright 2025, Tanviben Patel and Seyed Kahaki.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

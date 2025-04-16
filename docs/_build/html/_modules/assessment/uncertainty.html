@@ -1,21 +1,20 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>assessment.uncertainty &mdash; ValidPath 2.0.0 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>assessment.uncertainty &mdash; DataPath 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -26,11 +25,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> ValidPath
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            DataPath
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -42,11 +45,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../inputrequirements.html">Data (Input/Output) Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../WSI.html">WSI Handler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../annotation.html">Annotation Extraction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../patch.html">Patch Extraction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ann_generator.html">Annotation File Generator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../assessment.html">ML Assessment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../color_normalization.html">Color Normalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tissue_registration.html">Tissue Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stratification.html">Stratification and Dataset Splitting</a></li>
 </ul>
 
         </div>
@@ -55,14 +58,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">ValidPath</a>
+          <a href="../../index.html">DataPath</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
       <li class="breadcrumb-item active">assessment.uncertainty</li>
       <li class="wy-breadcrumbs-aside">
@@ -101,15 +104,17 @@
 <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">os.path</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_recall_curve</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span>
+<span class="c1">#from sklearn.metrics import precision_recall_curve</span>
+<span class="c1">#from sklearn.metrics import classification_report, confusion_matrix</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">cohen_kappa_score</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">auc</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
 
 
-<div class="viewcode-block" id="Uncertainty_Analysis"><a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis">[docs]</a><span class="k">class</span> <span class="nc">Uncertainty_Analysis</span><span class="p">:</span>
+<div class="viewcode-block" id="Uncertainty_Analysis">
+<a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis">[docs]</a>
+<span class="k">class</span> <span class="nc">Uncertainty_Analysis</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">perform_Delong</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">perform_Bootstrap</span> <span class="o">=</span> <span class="kc">False</span>
@@ -119,8 +124,10 @@
         <span class="k">pass</span>
 
 
-<div class="viewcode-block" id="Uncertainty_Analysis.get_report"><a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.get_report">[docs]</a>    <span class="k">def</span> <span class="nf">get_report</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_pred</span> <span class="p">,</span><span class="n">y_truth</span><span class="p">)</span> <span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; This method recieve the machine learning prediction output and the ground truth and report several metrics. This is the main metod of the Uncertainty_Analysis class which calls other methods to procude results.</span>
+<div class="viewcode-block" id="Uncertainty_Analysis.get_report">
+<a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.get_report">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_report</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_pred</span> <span class="p">,</span><span class="n">y_truth</span><span class="p">)</span> <span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; This method recieve the machine learning prediction output and the ground truth and report several metrics. This is the main metod of the Uncertainty_Analysis class which calls other methods to procude results.</span>
 <span class="sd">        </span>
 <span class="sd">        :Parameters:</span>
 <span class="sd">           y_truth: ground_truth -  np.array of 0 and 1</span>
@@ -209,9 +216,12 @@
         
         <span class="k">return</span> <span class="p">(</span><span class="n">precision</span><span class="p">,</span><span class="n">Precision_CI</span><span class="p">,</span><span class="n">recall</span><span class="p">,</span><span class="n">Recall_CI</span><span class="p">,</span> <span class="n">auc_delong</span> <span class="p">,</span><span class="n">auc_delong_cov</span> <span class="p">,</span><span class="n">ci_delong</span> <span class="p">,</span> <span class="n">fpr_keras</span><span class="p">,</span> <span class="n">tpr_keras</span> <span class="p">,</span><span class="n">auc_keras</span> <span class="p">,</span><span class="n">cmtx</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Uncertainty_Analysis.auc_keras_"><a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.auc_keras_">[docs]</a>    <span class="k">def</span> <span class="nf">auc_keras_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fpr_keras</span><span class="p">,</span> <span class="n">tpr_keras</span><span class="p">):</span>
-        
-        <span class="sd">&quot;&quot;&quot; Estimates confidence interval for Bernoulli p</span>
+
+<div class="viewcode-block" id="Uncertainty_Analysis.auc_keras_">
+<a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.auc_keras_">[docs]</a>
+    <span class="k">def</span> <span class="nf">auc_keras_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fpr_keras</span><span class="p">,</span> <span class="n">tpr_keras</span><span class="p">):</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Estimates confidence interval for Bernoulli p</span>
 <span class="sd">        </span>
 <span class="sd">        :Parameters:</span>
 <span class="sd">          fpr_keras: False Positive Rate Values</span>
@@ -222,12 +232,15 @@
 <span class="sd">          AUC: Area Under the ROC Curve</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         
-        <span class="n">auc_keras</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">fpr_keras</span><span class="p">,</span> <span class="n">tpr_keras</span><span class="p">)</span></div>
+        <span class="n">auc_keras</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">fpr_keras</span><span class="p">,</span> <span class="n">tpr_keras</span><span class="p">)</span>
 
-        <span class="c1">#return auc_keras</span>
+        <span class="k">return</span> <span class="n">auc_keras</span></div>
+
     
-<div class="viewcode-block" id="Uncertainty_Analysis.ci_"><a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.ci_">[docs]</a>    <span class="k">def</span> <span class="nf">ci_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tp</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Estimates confidence interval for Bernoulli p</span>
+<div class="viewcode-block" id="Uncertainty_Analysis.ci_">
+<a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.ci_">[docs]</a>
+    <span class="k">def</span> <span class="nf">ci_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tp</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Estimates confidence interval for Bernoulli p</span>
 <span class="sd">        </span>
 <span class="sd">        :Parameters:</span>
 <span class="sd">          tp: number of positive outcomes, TP in this case</span>
@@ -242,9 +255,12 @@
         <span class="n">variance_of_sum</span> <span class="o">=</span> <span class="n">p_hat</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p_hat</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
         <span class="n">std</span> <span class="o">=</span> <span class="n">variance_of_sum</span> <span class="o">**</span> <span class="mf">0.5</span>
         <span class="k">return</span> <span class="n">p_hat</span> <span class="o">-</span> <span class="n">z_score</span> <span class="o">*</span> <span class="n">std</span><span class="p">,</span> <span class="n">p_hat</span> <span class="o">+</span> <span class="n">z_score</span> <span class="o">*</span> <span class="n">std</span></div>
+
     
-<div class="viewcode-block" id="Uncertainty_Analysis.Delong_CI"><a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.Delong_CI">[docs]</a>    <span class="k">def</span> <span class="nf">Delong_CI</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_pred</span> <span class="p">,</span><span class="n">y_truth</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; A Python implementation of an algorithm for computing the statistical significance of comparing two sets of predictions by ROC AUC. </span>
+<div class="viewcode-block" id="Uncertainty_Analysis.Delong_CI">
+<a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.Delong_CI">[docs]</a>
+    <span class="k">def</span> <span class="nf">Delong_CI</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_pred</span> <span class="p">,</span><span class="n">y_truth</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; A Python implementation of an algorithm for computing the statistical significance of comparing two sets of predictions by ROC AUC. </span>
 <span class="sd">        Also can compute variance of a single ROC AUC estimate. X. Sun and W. Xu, &quot;Fast Implementation of DeLong’s Algorithm for Comparing the </span>
 <span class="sd">        Areas Under Correlated Receiver Operating Characteristic Curves,&quot; in IEEE Signal Processing Letters, vol. 21, no. 11, pp. 1389-1393, Nov. 2014, </span>
 <span class="sd">        doi: 10.1109/LSP.2014.2337313.</span>
@@ -274,10 +290,13 @@
 
         <span class="n">ci</span><span class="p">[</span><span class="n">ci</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">auc</span><span class="p">,</span> <span class="n">ci</span><span class="p">,</span> <span class="n">lower_upper_q</span><span class="p">,</span> <span class="n">auc_cov</span><span class="p">,</span> <span class="n">auc_std</span></div>
+
     
     <span class="c1"># stackoverflow.com/questions/19124239/scikit-learn-roc-curve-with-confidence-intervals</span>
-<div class="viewcode-block" id="Uncertainty_Analysis.compute_midrank"><a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.compute_midrank">[docs]</a>    <span class="k">def</span> <span class="nf">compute_midrank</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Computes midranks.</span>
+<div class="viewcode-block" id="Uncertainty_Analysis.compute_midrank">
+<a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.compute_midrank">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_midrank</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes midranks.</span>
 <span class="sd">        </span>
 <span class="sd">        :Parameters:</span>
 <span class="sd">           x - a 1D numpy array</span>
@@ -301,9 +320,12 @@
         <span class="c1"># instead of 1-based in the AUC formula in the paper</span>
         <span class="n">T2</span><span class="p">[</span><span class="n">J</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">T2</span></div>
+
         
-<div class="viewcode-block" id="Uncertainty_Analysis.compute_midrank_weight"><a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.compute_midrank_weight">[docs]</a>    <span class="k">def</span> <span class="nf">compute_midrank_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Computes midranks.</span>
+<div class="viewcode-block" id="Uncertainty_Analysis.compute_midrank_weight">
+<a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.compute_midrank_weight">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_midrank_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes midranks.</span>
 <span class="sd">        </span>
 <span class="sd">        :Parameters:</span>
 <span class="sd">           x - a 1D numpy array</span>
@@ -326,16 +348,22 @@
         <span class="n">T2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="n">T2</span><span class="p">[</span><span class="n">J</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span>
         <span class="k">return</span> <span class="n">T2</span></div>
+
     
     
-<div class="viewcode-block" id="Uncertainty_Analysis.fastDeLong"><a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.fastDeLong">[docs]</a>    <span class="k">def</span> <span class="nf">fastDeLong</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions_sorted_transposed</span><span class="p">,</span> <span class="n">label_1_count</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">):</span>
+<div class="viewcode-block" id="Uncertainty_Analysis.fastDeLong">
+<a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.fastDeLong">[docs]</a>
+    <span class="k">def</span> <span class="nf">fastDeLong</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions_sorted_transposed</span><span class="p">,</span> <span class="n">label_1_count</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fastDeLong_no_weights</span><span class="p">(</span><span class="n">predictions_sorted_transposed</span><span class="p">,</span> <span class="n">label_1_count</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fastDeLong_weights</span><span class="p">(</span><span class="n">predictions_sorted_transposed</span><span class="p">,</span> <span class="n">label_1_count</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span></div>
+
     
-<div class="viewcode-block" id="Uncertainty_Analysis.fastDeLong_weights"><a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.fastDeLong_weights">[docs]</a>    <span class="k">def</span> <span class="nf">fastDeLong_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions_sorted_transposed</span><span class="p">,</span> <span class="n">label_1_count</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Uncertainty_Analysis.fastDeLong_weights">
+<a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.fastDeLong_weights">[docs]</a>
+    <span class="k">def</span> <span class="nf">fastDeLong_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions_sorted_transposed</span><span class="p">,</span> <span class="n">label_1_count</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The fast version of DeLong&#39;s method for computing the covariance of</span>
 <span class="sd">        unadjusted AUC.</span>
 <span class="sd">        </span>
@@ -382,10 +410,13 @@
         <span class="n">sy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">v10</span><span class="p">)</span>
         <span class="n">delongcov</span> <span class="o">=</span> <span class="n">sx</span> <span class="o">/</span> <span class="n">m</span> <span class="o">+</span> <span class="n">sy</span> <span class="o">/</span> <span class="n">n</span>
         <span class="k">return</span> <span class="n">aucs</span><span class="p">,</span> <span class="n">delongcov</span></div>
+
     
     
-<div class="viewcode-block" id="Uncertainty_Analysis.fastDeLong_no_weights"><a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.fastDeLong_no_weights">[docs]</a>    <span class="k">def</span> <span class="nf">fastDeLong_no_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions_sorted_transposed</span><span class="p">,</span> <span class="n">label_1_count</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Uncertainty_Analysis.fastDeLong_no_weights">
+<a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.fastDeLong_no_weights">[docs]</a>
+    <span class="k">def</span> <span class="nf">fastDeLong_no_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions_sorted_transposed</span><span class="p">,</span> <span class="n">label_1_count</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The fast version of DeLong&#39;s method for computing the covariance of</span>
 <span class="sd">        unadjusted AUC.</span>
 <span class="sd">        </span>
@@ -429,10 +460,13 @@
         <span class="n">sy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">v10</span><span class="p">)</span>
         <span class="n">delongcov</span> <span class="o">=</span> <span class="n">sx</span> <span class="o">/</span> <span class="n">m</span> <span class="o">+</span> <span class="n">sy</span> <span class="o">/</span> <span class="n">n</span>
         <span class="k">return</span> <span class="n">aucs</span><span class="p">,</span> <span class="n">delongcov</span></div>
+
     
     
-<div class="viewcode-block" id="Uncertainty_Analysis.calc_pvalue"><a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.calc_pvalue">[docs]</a>    <span class="k">def</span> <span class="nf">calc_pvalue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aucs</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Computes log(10) of p-values.</span>
+<div class="viewcode-block" id="Uncertainty_Analysis.calc_pvalue">
+<a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.calc_pvalue">[docs]</a>
+    <span class="k">def</span> <span class="nf">calc_pvalue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aucs</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes log(10) of p-values.</span>
 <span class="sd">        </span>
 <span class="sd">        :Parameters:</span>
 <span class="sd">           aucs: 1D array of AUCs</span>
@@ -444,9 +478,12 @@
         <span class="n">l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
         <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">aucs</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">sigma</span><span class="p">),</span> <span class="n">l</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">logsf</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span></div>
+
         
         
-<div class="viewcode-block" id="Uncertainty_Analysis.compute_ground_truth_statistics"><a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.compute_ground_truth_statistics">[docs]</a>    <span class="k">def</span> <span class="nf">compute_ground_truth_statistics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">):</span>
+<div class="viewcode-block" id="Uncertainty_Analysis.compute_ground_truth_statistics">
+<a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.compute_ground_truth_statistics">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_ground_truth_statistics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">):</span>
         <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">ground_truth</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
         <span class="n">order</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">ground_truth</span><span class="p">)</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span>
         <span class="n">label_1_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ground_truth</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
@@ -456,10 +493,13 @@
             <span class="n">ordered_sample_weight</span> <span class="o">=</span> <span class="n">sample_weight</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="n">order</span><span class="p">,</span> <span class="n">label_1_count</span><span class="p">,</span> <span class="n">ordered_sample_weight</span></div>
+
         
         
-<div class="viewcode-block" id="Uncertainty_Analysis.delong_roc_variance"><a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.delong_roc_variance">[docs]</a>    <span class="k">def</span> <span class="nf">delong_roc_variance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Uncertainty_Analysis.delong_roc_variance">
+<a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.delong_roc_variance">[docs]</a>
+    <span class="k">def</span> <span class="nf">delong_roc_variance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes ROC AUC variance for a single set of predictions</span>
 <span class="sd">        </span>
 <span class="sd">        :Parameters:</span>
@@ -472,10 +512,13 @@
         <span class="n">aucs</span><span class="p">,</span> <span class="n">delongcov</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fastDeLong</span><span class="p">(</span><span class="n">predictions_sorted_transposed</span><span class="p">,</span> <span class="n">label_1_count</span><span class="p">,</span> <span class="n">ordered_sample_weight</span><span class="p">)</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">aucs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">aucs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">delongcov</span></div>
+
         
         
-<div class="viewcode-block" id="Uncertainty_Analysis.bootstrapping"><a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.bootstrapping">[docs]</a>    <span class="k">def</span> <span class="nf">bootstrapping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Uncertainty_Analysis.bootstrapping">
+<a class="viewcode-back" href="../../assessment.html#assessment.uncertainty.Uncertainty_Analysis.bootstrapping">[docs]</a>
+    <span class="k">def</span> <span class="nf">bootstrapping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes ROC AUC variance for a single set of predictions</span>
 <span class="sd">        </span>
 <span class="sd">        :Parameters:</span>
@@ -516,7 +559,9 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bootstrap&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Confidence interval for the score: [</span><span class="si">{:0.3f}</span><span class="s2"> - </span><span class="si">{:0.3}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="n">confidence_lower</span><span class="p">,</span> <span class="n">confidence_upper</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">bootstrapped_scores</span><span class="p">,</span> <span class="n">confidence_lower</span><span class="p">,</span> <span class="n">confidence_upper</span></div></div>
+        <span class="k">return</span> <span class="n">bootstrapped_scores</span><span class="p">,</span> <span class="n">confidence_lower</span><span class="p">,</span> <span class="n">confidence_upper</span></div>
+</div>
+
         
     
 </pre></div>
@@ -528,7 +573,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Seyed Kahaki.</p>
+    <p>&#169; Copyright 2025, Tanviben Patel and Seyed Kahaki.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

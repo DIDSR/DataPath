@@ -1,4 +1,4 @@
-.. ValidPath documentation master file, created by
+.. DataPath documentation master file, created by
    sphinx-quickstart on Wed Nov  9 10:26:58 2022.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
@@ -6,10 +6,18 @@
 Home
 ============================================================================================================
 
-About ValidPath
+About DataPath
 --------------------------------------------------------
-The Whole Slide Image Processing and Machine Learning Performance Assessment Tool is a software program written in Python for analyzing whole slide images (WSIs), assisting pathologists in the assessment of machine learning (ML) results, and assessment of ML performance. The tool currently contains three modules that accept WSIs to generate image patches for AI/ML models, accept image patches (e.g., ML detected ROIs) to generate an Aperio ImageScope annotation file for validation of ML model results by pathologists, and accept outputs of ML models to generate performance results and their confidence intervals.
+The Whole Slide Image Processing and Machine Learning Performance Assessment Tool is a software program written in Python for analyzing whole slide images (WSIs), assisting pathologists in the assessment of machine learning (ML) results, and evaluating ML performance. 
 
+The toolbox includes modules to:
+- Generate image patches for AI/ML models
+- Extract and visualize annotations from WSIs
+- Generate Aperio ImageScope annotation files for pathologist validation
+- Normalize stain color across images
+- Register slides across scanners
+- Split datasets with category/subtype-aware stratification
+- Assess model performance and metrics
 
 The Whole Slide Image Processing and Performance Assessment Tool code has been used in the following publications:
 
@@ -26,8 +34,10 @@ There are several modules in this package including:
 	1.	WSI handler: includes functions and classes for general WSI analysis such as read whole slide images, tissue segmentation, and normalization.
 	2.	Annotation Extraction: this module includes several functions for processing annotations such as annotation extraction.
 	3.	Patch Extraction: which assist pathologist and developers in extracting image patches from whole slide images region of interest.
-	4.	Aperio ImageScope Annotation File Generator: to enable pathologist validation of the AI/ML results.
-	5.	Performance Assessment: to assess the performance of ML models in classification tasks.
+	4.      Color Normalization: Normalizes stain color using Macenko, Vahadane, Reinhard, and histogram matching methods.
+	5.	Tissue Registration: Registers tissue regions between WSIs scanned from different scanners using ORB-based alignment.
+	6.	Stratification: Splits datasets into train/val/test while preserving class balance across categories and subtypes.
+
 
 To see a demo of the functions in this toolbox, please refer to the Jupyter Notebooks files in the root folder of this package.
 
@@ -37,9 +47,11 @@ To see a demo of the functions in this toolbox, please refer to the Jupyter Note
 
 	•	03_patch_extraction.ipynb_
 
-	•	4_annotation_generator.ipynb_
+	•	04_color_normalization.ipynb_
 
-	•	05_performance_assessment.ipynb_
+	•	05_tissue_registration.ipynb_
+
+    	•	06_stratification.ipynb_
     
 .. _01_read_wsi.ipynb: https://github.com/mousavikahaki/ValidPath/blob/main/01_read_wsi.ipynb
 
@@ -47,9 +59,11 @@ To see a demo of the functions in this toolbox, please refer to the Jupyter Note
 
 .. _03_patch_extraction.ipynb: https://github.com/mousavikahaki/ValidPath/blob/main/03_patch_extraction.ipynb
 
-.. _4_annotation_generator.ipynb: https://github.com/mousavikahaki/ValidPath/blob/main/4_annotation_generator.ipynb
+.. _04_color_normalization.ipynb: https://github.com/mousavikahaki/ValidPath/blob/main/04_color_normalization.ipynb
 
-.. _05_performance_assessment.ipynb: https://github.com/mousavikahaki/ValidPath/blob/main/05_performance_assessment.ipynb
+.. _05_tissue_registration.ipynb: https://github.com/mousavikahaki/ValidPath/blob/main/05_tissue_registration.ipynb
+
+.. _06_stratification.ipynb: https://github.com/mousavikahaki/ValidPath/blob/main/06_stratification.ipynb
 
 .. toctree::
    :hidden:
@@ -66,8 +80,9 @@ To see a demo of the functions in this toolbox, please refer to the Jupyter Note
    WSI
    annotation
    patch
-   ann_generator
-   assessment
+   color_normalization
+   tissue_registration
+   stratification
 
 
 

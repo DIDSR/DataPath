@@ -1,27 +1,24 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Annotation File Generator &mdash; ValidPath 2.0.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Annotation File Generator &mdash; DataPath 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=51b770b3"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="ML Assessment" href="assessment.html" />
-    <link rel="prev" title="Patch Extraction" href="patch.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -29,11 +26,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> ValidPath
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DataPath
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -42,29 +43,14 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
 </ul>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inputrequirements.html">Data (Input/Output) Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="WSI.html">WSI Handler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="annotation.html">Annotation Extraction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="patch.html">Patch Extraction</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Annotation File Generator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-assessment.annotation">assessment.annotation module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#assessment.annotation.Annotation_Generator"><code class="docutils literal notranslate"><span class="pre">Annotation_Generator</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#assessment.annotation.Annotation_Generator.create_xml"><code class="docutils literal notranslate"><span class="pre">Annotation_Generator.create_xml()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#assessment.annotation.Annotation_Generator.generate_map_file"><code class="docutils literal notranslate"><span class="pre">Annotation_Generator.generate_map_file()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#assessment.annotation.Annotation_Generator.make_region"><code class="docutils literal notranslate"><span class="pre">Annotation_Generator.make_region()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#about-this-module">About this module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#loading-required-packages">Loading Required Packages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#generating-the-map-file">Generating the Map File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#generating-rois">Generating ROIs</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="assessment.html">ML Assessment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="color_normalization.html">Color Normalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tissue_registration.html">Tissue Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stratification.html">Stratification and Dataset Splitting</a></li>
 </ul>
 
         </div>
@@ -73,14 +59,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ValidPath</a>
+          <a href="index.html">DataPath</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Annotation File Generator</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/ann_generator.rst.txt" rel="nofollow"> View page source</a>
@@ -92,9 +78,9 @@
            <div itemprop="articleBody">
              
   <section id="annotation-file-generator">
-<h1>Annotation File Generator<a class="headerlink" href="#annotation-file-generator" title="Permalink to this heading"></a></h1>
+<h1>Annotation File Generator<a class="headerlink" href="#annotation-file-generator" title="Link to this heading"></a></h1>
 <section id="module-assessment.annotation">
-<span id="assessment-annotation-module"></span><h2>assessment.annotation module<a class="headerlink" href="#module-assessment.annotation" title="Permalink to this heading"></a></h2>
+<span id="assessment-annotation-module"></span><h2>assessment.annotation module<a class="headerlink" href="#module-assessment.annotation" title="Link to this heading"></a></h2>
 <hr class="docutils" />
 <p><strong>Title:</strong>       ValidPath Toolbox - Annotation File Generation Module</p>
 <p><strong>Description:</strong>  This is the Annotation File Generator module for the ValidPath toolbox. It is includes Annotation_Generator class and several methods</p>
@@ -110,14 +96,14 @@
 <hr class="docutils" />
 <dl class="py class">
 <dt class="sig sig-object py" id="assessment.annotation.Annotation_Generator">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">assessment.annotation.</span></span><span class="sig-name descname"><span class="pre">Annotation_Generator</span></span><a class="reference internal" href="_modules/assessment/annotation.html#Annotation_Generator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#assessment.annotation.Annotation_Generator" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">assessment.annotation.</span></span><span class="sig-name descname"><span class="pre">Annotation_Generator</span></span><a class="reference internal" href="_modules/assessment/annotation.html#Annotation_Generator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#assessment.annotation.Annotation_Generator" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="assessment.annotation.Annotation_Generator.create_xml">
-<span class="sig-name descname"><span class="pre">create_xml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_DIR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_xml_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/assessment/annotation.html#Annotation_Generator.create_xml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#assessment.annotation.Annotation_Generator.create_xml" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">create_xml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_DIR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_xml_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/assessment/annotation.html#Annotation_Generator.create_xml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#assessment.annotation.Annotation_Generator.create_xml" title="Link to this definition"></a></dt>
 <dd><p>This method reads the map file generated uisng the ROI_Generator.generate_map_file and generated the XML annotation file based on Aperio ImageScope standard.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>input_DIR<span class="classifier">string</span></dt><dd><p>the path to the input directory of mapping file</p>
 </dd>
@@ -129,7 +115,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>XML – the XML files</p>
 </dd>
 </dl>
@@ -137,13 +123,13 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="assessment.annotation.Annotation_Generator.generate_map_file">
-<span class="sig-name descname"><span class="pre">generate_map_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_DIR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_DIR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_Name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/assessment/annotation.html#Annotation_Generator.generate_map_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#assessment.annotation.Annotation_Generator.generate_map_file" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">generate_map_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_DIR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_DIR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_Name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/assessment/annotation.html#Annotation_Generator.generate_map_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#assessment.annotation.Annotation_Generator.generate_map_file" title="Link to this definition"></a></dt>
 <dd><p>This method extracts different types for annotations from Whole Slide Images.
 It can save the extracted annottions to the output directory as defined in inputs.
 This code also handles several annotations per slide. 
 The output directory will be generated based on the structure of the input directories.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>input_DIR<span class="classifier">string</span></dt><dd><p>the path to the input directory of image patches</p>
 </dd>
@@ -155,7 +141,7 @@ The output directory will be generated based on the structure of the input direc
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>CSV – the map file</p>
 </dd>
 </dl>
@@ -163,10 +149,10 @@ The output directory will be generated based on the structure of the input direc
 
 <dl class="py method">
 <dt class="sig sig-object py" id="assessment.annotation.Annotation_Generator.make_region">
-<span class="sig-name descname"><span class="pre">make_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">txt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Regions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/assessment/annotation.html#Annotation_Generator.make_region"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#assessment.annotation.Annotation_Generator.make_region" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">make_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">txt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Regions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/assessment/annotation.html#Annotation_Generator.make_region"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#assessment.annotation.Annotation_Generator.make_region" title="Link to this definition"></a></dt>
 <dd><p>This method generate the XMl file structure and fill the content based on the Aperio ImageScope standard</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>x<span class="classifier">integer</span></dt><dd><p>Output Directory to save the extracted annotations</p>
 </dd>
@@ -180,7 +166,7 @@ The output directory will be generated based on the structure of the input direc
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>XML strycture</p>
 </dd>
 </dl>
@@ -190,21 +176,23 @@ The output directory will be generated based on the structure of the input direc
 
 </section>
 <section id="about-this-module">
-<h2>About this module<a class="headerlink" href="#about-this-module" title="Permalink to this heading"></a></h2>
-<p>This demonstration guides you through the process of using ValidPath to generate annotation file for Aperio Image Scope application. This feature enabled using methods included in the ROI class. his module enables generating visualizing the location of the image patches on the WSI file (in Image Scope application). The input to this process is a directory of image patches which the location of each image patch is coded into the file name as &lt;annotation ID&gt;_&lt;WSI File Name&gt;_x_&lt;x coordinate of the image patch&gt;_y_&lt;y coordinate of the image patch&gt;.png</p>
-<a class="reference internal image-reference" href="_images/ann_generator1.PNG"><img alt="_images/ann_generator1.PNG" class="align-center" src="_images/ann_generator1.PNG" style="width: 300px;" /></a>
+<h2>About this module<a class="headerlink" href="#about-this-module" title="Link to this heading"></a></h2>
+<p>This demonstration guides you through the process of using DataPath to generate annotation file for Aperio Image Scope application. This feature enabled using methods included in the ROI class. his module enables generating visualizing the location of the image patches on the WSI file (in Image Scope application). The input to this process is a directory of image patches which the location of each image patch is coded into the file name as &lt;annotation ID&gt;_&lt;WSI File Name&gt;_x_&lt;x coordinate of the image patch&gt;_y_&lt;y coordinate of the image patch&gt;.png</p>
+<a class="reference internal image-reference" href="_images/ann_generator1.PNG"><img alt="_images/ann_generator1.PNG" class="align-center" src="_images/ann_generator1.PNG" style="width: 300px;" />
+</a>
 <p>The ROI generating module has two steps including Mapping file generation, and XML file (ROI file) generation. The pipeline of this process summarized in the image below.</p>
-<a class="reference internal image-reference" href="_images/ann_generator2.PNG"><img alt="_images/ann_generator2.PNG" class="align-center" src="_images/ann_generator2.PNG" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="_images/ann_generator2.PNG"><img alt="_images/ann_generator2.PNG" class="align-center" src="_images/ann_generator2.PNG" style="width: 300px;" />
+</a>
 </section>
 <section id="loading-required-packages">
-<h2>Loading Required Packages<a class="headerlink" href="#loading-required-packages" title="Permalink to this heading"></a></h2>
+<h2>Loading Required Packages<a class="headerlink" href="#loading-required-packages" title="Link to this heading"></a></h2>
 <p>This step involves importing various Python modules that are needed for our analysis.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">from assessment.ROI import ROI_Generator</span>
 </pre></div>
 </div>
 </section>
 <section id="generating-the-map-file">
-<h2>Generating the Map File<a class="headerlink" href="#generating-the-map-file" title="Permalink to this heading"></a></h2>
+<h2>Generating the Map File<a class="headerlink" href="#generating-the-map-file" title="Link to this heading"></a></h2>
 <p>As mentioned earlier, the first step of the annotation generation file is to generate the map file which is a csv file. Please make sure that you imported the ROI_Generator class using “from assessment.ROI import ROI_Generator”. To generate the map file, you can call the generate_map_file method of the ROI_Generator class</p>
 <p>You can run the following code to generate the map filename:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">input_DIR = &#39;C:/DATA/6_ML_Patches/ML_Patches/HighRanked/&#39;</span>
@@ -216,7 +204,7 @@ The output directory will be generated based on the structure of the input direc
 </div>
 </section>
 <section id="generating-rois">
-<h2>Generating ROIs<a class="headerlink" href="#generating-rois" title="Permalink to this heading"></a></h2>
+<h2>Generating ROIs<a class="headerlink" href="#generating-rois" title="Link to this heading"></a></h2>
 <p>Having the ROI mapping file, we can now generate the XML file which are readable with Aperio image scope application. In order to generate the annotation files, we can use the create_xml method of the ROI_Generator class</p>
 <p>You can run the following code to generate the XML files containing annotations:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">input_DIR = &#39;C:/DATA/6_ML_Patches/&#39;</span>
@@ -229,22 +217,20 @@ The output directory will be generated based on the structure of the input direc
 </pre></div>
 </div>
 <p>After generating the XML file, copy them into the whole slide image folder and open the WSI to visualize the WSI and the ROI regions. The result should look like this:</p>
-<a class="reference internal image-reference" href="_images/ann_generator3.PNG"><img alt="_images/ann_generator3.PNG" class="align-center" src="_images/ann_generator3.PNG" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="_images/ann_generator3.PNG"><img alt="_images/ann_generator3.PNG" class="align-center" src="_images/ann_generator3.PNG" style="width: 300px;" />
+</a>
 </section>
 </section>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="patch.html" class="btn btn-neutral float-left" title="Patch Extraction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="assessment.html" class="btn btn-neutral float-right" title="ML Assessment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Seyed Kahaki.</p>
+    <p>&#169; Copyright 2025, Tanviben Patel and Seyed Kahaki.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
