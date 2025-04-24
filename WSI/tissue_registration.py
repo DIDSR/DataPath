@@ -268,6 +268,29 @@ class tissue_registration:
 
             plt.tight_layout()
             plt.show()
+            
+    def save_histech_xml(self, transformed_annotations, output_file):
+        """
+        Save transformed annotations to an XML file (Aperio-style format).
+    
+        Parameters
+        ----------
+        transformed_annotations : list of ndarray
+            List of polygon coordinate arrays mapped to Histech image.
+        output_file : str
+            Path to save the new XML file.
+        """
+        root = etree.Element("Annotations")
+        for i, coords in enumerate(transformed_annotations):
+            annotation = etree.SubElement(root, "Annotation", Id=str(i), Name=f"Region_{i}", Type="Polygon", LineColor="255")
+            region = etree.SubElement(annotation, "Regions")
+            reg = etree.SubElement(region, "Region", Id="0", Type="0", Zoom="1", ImageLocation="", Length="0")
+            vertices = etree.SubElement(reg, "Vertices")
+            for x, y in coords:
+                etree.SubElement(vertices, "Vertex", X=str(x), Y=str(y))
+        tree = etree.ElementTree(root)
+        tree.write(output_file, pretty_print=True, xml_declaration=True, encoding='UTF-8')
+
 
     def run(self):
         """
@@ -307,6 +330,16 @@ class tissue_registration:
 
             cv2.polylines(aperio_vis, [aperio_poly_thumb], isClosed=True, color=(0, 255, 0), thickness=8)
             cv2.polylines(histech_vis, [histech_poly_thumb], isClosed=True, color=(0, 255, 0), thickness=16)
+            # Collect transformed annotations
+            transformed_annotations = []
+            for aperio_coords in annotations:
+                histech_coords = self.map_coords(aperio_coords, H, aperio_scale, histech_scale)
+                transformed_annotations.append(histech_coords)
+            
+        # Save new XML for Histech
+        xml_output_path = os.path.join(self.output_base, "histech_annotations.xml")
+        self.save_histech_xml(transformed_annotations, xml_output_path)
+        print(" Saved transformed annotations to:", xml_output_path)
 
         Image.fromarray(aperio_vis).save(os.path.join(self.vis_dir, "aperio_annotated_thumb.png"))
         Image.fromarray(histech_vis).save(os.path.join(self.vis_dir, "histech_registered_thumb.png"))
