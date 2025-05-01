@@ -1,0 +1,610 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Apr  2 13:50:13 2025
+
+@author: Tanviben.Patel
+"""
+"""
+---------------------------------------------------------------------------
+Created on Apr 2, 2025
+
+----------------------------------------------------------------------------
+
+**Title:**        DataPath Toolbox - WSI Handler module
+
+**Description:**  This is the WSI Handler module for the DataPath toolbox. It is includes tissue_registration class and several methods
+              
+**Classes:**      tissue_registration          
+
+This module provides the tissue_registration class, which performs tissue registration and annotation transfer between Whole Slide Images (WSIs) acquired from different scanners. (e.g., Aperio and Histech).
+    
+---------------------------------------------------------------------------
+Author: Tanviben.Patel (tanviben.patel@fda.hhs.gov) SeyedM.MousaviKahaki (seyed.kahaki@fda.hhs.gov)
+Version ='1.0'
+---------------------------------------------------------------------------
+"""
+
+
+import os
+import cv2
+import glob
+import numpy as np
+import openslide
+import tiffslide
+from lxml import etree
+import matplotlib.pyplot as plt
+from PIL import Image, PngImagePlugin
+
+
+class tissue_registration:
+    """
+    A class for performing tissue registration and annotation transfer between
+    Whole Slide Images (WSIs) from different scanners (e.g., Aperio and Histech).
+
+    This includes registration via ORB features, annotation parsing and mapping,
+    and patch extraction for downstream analysis.
+    """
+
+    def __init__(self, aperio_path, histech_path, xml_path, output_base):
+        """
+        Initialize the registration pipeline.
+
+        Parameters
+        ----------
+        aperio_path : str
+            Path to the Aperio slide (.svs).
+        histech_path : str
+            Path to the Histech slide (.svs).
+        xml_path : str
+            Path to the Aperio XML annotation file.
+        output_base : str
+            Base directory to save output folders and visualizations.
+        """
+        self.aperio_path = aperio_path
+        self.histech_path = histech_path
+        self.xml_path = xml_path
+        self.output_base = output_base
+
+        self.histech_dir = os.path.join(output_base, "histech_patches")
+        self.aperio_dir = os.path.join(output_base, "aperio_patches")
+        self.vis_dir = os.path.join(output_base, "visualizations")
+        os.makedirs(self.histech_dir, exist_ok=True)
+        os.makedirs(self.aperio_dir, exist_ok=True)
+        os.makedirs(self.vis_dir, exist_ok=True)
+
+        self.aperio_slide = openslide.OpenSlide(self.aperio_path)
+        self.histech_slide = tiffslide.TiffSlide(self.histech_path)
+
+    def load_level_image(self, slide, level=2):
+        """
+        Load an image from a specific resolution level of a WSI.
+
+        Parameters
+        ----------
+        slide : OpenSlide or TiffSlide
+            Slide object to load from.
+        level : int, optional
+            Resolution level to load (default is 2).
+
+        Returns
+        -------
+        image : ndarray
+            Image array at the specified level.
+        downsample : float
+            Downsampling factor relative to level 0.
+        """
+        if level >= slide.level_count:
+            raise ValueError(f"Level {level} not available. Max level: {slide.level_count - 1}")
+        dims = slide.level_dimensions[level]
+        downsample = slide.level_downsamples[level]
+        region = slide.read_region((0, 0), level, dims).convert("RGB")
+        return np.array(region), downsample
+
+    def register_orb(self, moving_img, fixed_img, return_matches=False):
+        """
+        Register two images using ORB feature detection and matching.
+
+        Parameters
+        ----------
+        moving_img : ndarray
+            Source image to be aligned.
+        fixed_img : ndarray
+            Reference image.
+
+        Returns
+        -------
+        H : ndarray
+            Estimated homography matrix (3x3).
+        """
+        """orb = cv2.ORB_create(5000)
+        kp1, des1 = orb.detectAndCompute(moving_img, None)
+        kp2, des2 = orb.detectAndCompute(fixed_img, None)
+        matcher = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+        matches = matcher.match(des1, des2)
+        matches = sorted(matches, key=lambda x: x.distance)
+        src_pts = np.float32([kp1[m.queryIdx].pt for m in matches]).reshape(-1, 1, 2)
+        dst_pts = np.float32([kp2[m.trainIdx].pt for m in matches]).reshape(-1, 1, 2)
+        H, _ = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
+        return H"""
+        
+   
+        orb = cv2.ORB_create(5000)
+        kp1, des1 = orb.detectAndCompute(moving_img, None)
+        kp2, des2 = orb.detectAndCompute(fixed_img, None)
+        matcher = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+        matches = matcher.match(des1, des2)
+        matches = sorted(matches, key=lambda x: x.distance)
+        src_pts = np.float32([kp1[m.queryIdx].pt for m in matches]).reshape(-1, 1, 2)
+        dst_pts = np.float32([kp2[m.trainIdx].pt for m in matches]).reshape(-1, 1, 2)
+        H, _ = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
+    
+        if return_matches:
+            return H, kp1, kp2, matches
+        else:
+            return H
+
+
+    def parse_xml(self):
+        """
+        Parse Aperio XML annotations to extract region coordinates.
+
+        Returns
+        -------
+        annotations : list of ndarray
+            List of polygon coordinate arrays.
+        """
+        tree = etree.parse(self.xml_path)
+        root = tree.getroot()
+        annotations = []
+        for annotation in root.xpath('.//Annotation'):
+            region_name = annotation.attrib.get('Name', f"Region")
+            for region in annotation.xpath('.//Region'):
+                vertices = region.xpath('.//Vertex')
+                coords = [(float(v.attrib['X']), float(v.attrib['Y'])) for v in vertices]
+                if coords:
+                    annotations.append((np.array(coords, dtype=np.float32), region_name))
+        return annotations
+
+    def map_coords(self, coords, H, scale_from, scale_to):
+        """
+        Apply homography and scale transformation to polygon coordinates.
+
+        Parameters
+        ----------
+        coords : ndarray
+            Original polygon coordinates.
+        H : ndarray
+            Homography matrix.
+        scale_from : float
+            Source scale factor.
+        scale_to : float
+            Target scale factor.
+
+        Returns
+        -------
+        coords_transformed : ndarray
+            Transformed and scaled coordinates.
+        """
+        coords_scaled = coords / scale_from
+        coords_transformed = cv2.perspectiveTransform(coords_scaled[None], H)[0]
+        return coords_transformed * scale_to
+
+    def crop_polygon(self, slide, polygon, pad=0):
+        """
+        Crop a rectangular region that bounds a polygon.
+
+        Parameters
+        ----------
+        slide : OpenSlide or TiffSlide
+            Slide to crop from.
+        polygon : ndarray
+            Polygon coordinates.
+        pad : int, optional
+            Padding around the polygon (default is 0).
+
+        Returns
+        -------
+        region : PIL.Image
+            Cropped image region.
+        origin : tuple
+            Top-left coordinate of the cropped region.
+        """
+        x_min = int(np.min(polygon[:, 0])) - pad
+        y_min = int(np.min(polygon[:, 1])) - pad
+        x_max = int(np.max(polygon[:, 0])) + pad
+        y_max = int(np.max(polygon[:, 1])) + pad
+        region = slide.read_region((x_min, y_min), 0, (x_max - x_min, y_max - y_min)).convert("RGB")
+        return region, (x_min, y_min)
+
+    def show_annotated_thumbnails(self, aperio_filename="aperio_annotated_thumb.png", histech_filename="histech_registered_thumb.png"):
+        """
+        Display annotated thumbnails of Aperio and Histech slides side by side.
+
+        Parameters
+        ----------
+        aperio_filename : str
+            Filename of the Aperio annotated thumbnail.
+        histech_filename : str
+            Filename of the Histech annotated thumbnail.
+        """
+        Image.MAX_IMAGE_PIXELS = None
+        aperio_path = os.path.join(self.vis_dir, aperio_filename)
+        histech_path = os.path.join(self.vis_dir, histech_filename)
+
+        aperio_img = Image.open(aperio_path)
+        histech_img = Image.open(histech_path)
+
+        plt.figure(figsize=(12, 5))
+        plt.subplot(1, 2, 1)
+        plt.imshow(aperio_img)
+        plt.title("Aperio Annotated Thumbnail")
+        plt.axis("off")
+
+        plt.subplot(1, 2, 2)
+        plt.imshow(histech_img)
+        plt.title("Histech Registered Thumbnail")
+        plt.axis("off")
+
+        plt.tight_layout()
+        plt.show()
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    def visualize_annotated_thumbnails(self, save_path=None):
+        """
+        Visualize Aperio and Histech thumbnails with annotated regions.
+    
+        Parameters
+        ----------
+        save_path : str, optional
+            If provided, saves the figure to the given path.
+        """
+        import matplotlib.pyplot as plt
+    
+        # Load level-2 thumbnails
+        aperio_thumb, aperio_scale = self.load_level_image(self.aperio_slide, level=2)
+        histech_thumb, histech_scale = self.load_level_image(self.histech_slide, level=2)
+    
+        # Get homography
+        H = self.register_orb(aperio_thumb, histech_thumb)
+    
+        # Parse annotations
+        annotations = self.parse_xml()
+    
+        # Plotting
+        plt.figure(figsize=(18, 8))
+    
+        colors = {
+            "Carcinoma": "red",
+            "CAH": "blue",
+            "Benign": "green",
+        }
+    
+        # Aperio thumbnail
+        plt.subplot(1, 2, 1)
+        plt.imshow(aperio_thumb)
+        for aperio_coords, region_label in annotations:
+            aperio_poly_thumb = (aperio_coords / aperio_scale).astype(np.int32)
+            color = colors.get(region_label, "yellow")  # default yellow if unknown label
+            plt.plot(aperio_poly_thumb[:, 0], aperio_poly_thumb[:, 1], linewidth=2, color=color)
+        plt.title("Aperio Original Annotations")
+        plt.axis('off')
+    
+        # Histech thumbnail
+        plt.subplot(1, 2, 2)
+        plt.imshow(histech_thumb)
+        for aperio_coords, region_label in annotations:
+            histech_coords = self.map_coords(aperio_coords, H, aperio_scale, histech_scale)
+            histech_poly_thumb = (histech_coords / histech_scale).astype(np.int32)
+            color = colors.get(region_label, "yellow")
+            plt.plot(histech_poly_thumb[:, 0], histech_poly_thumb[:, 1], linewidth=2, color=color)
+        plt.title("Histech Mapped Annotations")
+        plt.axis('off')
+    
+        plt.tight_layout()
+    
+        if save_path:
+            plt.savefig(save_path, dpi=300)
+            print(f"Saved visualization to {save_path}")
+        else:
+            plt.show()
+
+    def visualize_orb_matches_resized(self, target_max_dim=1024, save_path=None):
+        """
+        Resize Aperio and Histech thumbnails with aspect ratio preserved,
+        perform ORB matching, and visualize the matches.
+    
+        Parameters
+        ----------
+        target_max_dim : int, optional
+            Maximum dimension (width or height) after resizing. Default is 1024.
+        save_path : str, optional
+            If provided, saves the match visualization to the given path.
+        """
+        import matplotlib.pyplot as plt
+        import cv2
+        import numpy as np
+    
+        def resize_preserve_aspect(img, max_dim):
+            """Helper to resize image preserving aspect ratio."""
+            h, w = img.shape[:2]
+            scale = max_dim / max(h, w)
+            new_w = int(w * scale)
+            new_h = int(h * scale)
+            return cv2.resize(img, (new_w, new_h)), scale
+    
+        # Load thumbnails
+        aperio_thumb, aperio_scale = self.load_level_image(self.aperio_slide, level=2)
+        histech_thumb, histech_scale = self.load_level_image(self.histech_slide, level=2)
+    
+        # Resize both while preserving aspect ratio
+        aperio_thumb_resized, scale_aperio = resize_preserve_aspect(aperio_thumb, target_max_dim)
+        histech_thumb_resized, scale_histech = resize_preserve_aspect(histech_thumb, target_max_dim)
+    
+        # Perform ORB matching
+        H, kp1, kp2, matches = self.register_orb(aperio_thumb_resized, histech_thumb_resized, return_matches=True)
+    
+        # Draw matches
+        img_matches = cv2.drawMatches(
+            aperio_thumb_resized, kp1,
+            histech_thumb_resized, kp2,
+            matches[:50], None,
+            flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS
+        )
+    
+        # Display or Save
+        plt.figure(figsize=(20, 10))
+        plt.imshow(img_matches)
+        plt.title("ORB Matches Between Aperio and Histech Thumbnails (Aspect Preserved)")
+        plt.axis('off')
+        plt.tight_layout()
+    
+        if save_path:
+            plt.savefig(save_path, dpi=300)
+            print(f"Saved ORB matches visualization to {save_path}")
+        else:
+            plt.show()
+
+
+    def show_registered_patches(self, max_pairs=2):
+        """
+        Display paired tissue patches extracted from Aperio and Histech slides.
+
+        Parameters
+        ----------
+        max_pairs : int
+            Number of patch pairs to display.
+        """
+        PngImagePlugin.MAX_TEXT_CHUNK = 100 * 1024 * 1024  # 100 MB
+
+        aperio_patches = sorted(glob.glob(os.path.join(self.aperio_dir, "*.png")))
+        histech_patches = sorted(glob.glob(os.path.join(self.histech_dir, "*.png")))
+        num_to_show = min(max_pairs, len(aperio_patches), len(histech_patches))
+
+        for i in range(num_to_show):
+            try:
+                aperio_patch = Image.open(aperio_patches[i])
+                histech_patch = Image.open(histech_patches[i])
+            except ValueError as e:
+                if "Decompressed data too large" in str(e):
+                    print(f"?? Skipping large image: {aperio_patches[i]} or {histech_patches[i]}")
+                    continue
+                else:
+                    raise
+
+            plt.figure(figsize=(10, 5))
+            plt.subplot(1, 2, 1)
+            plt.imshow(aperio_patch)
+            plt.title(f"Aperio Patch {i}")
+            plt.axis("off")
+
+            plt.subplot(1, 2, 2)
+            plt.imshow(histech_patch)
+            plt.title(f"Histech Patch {i}")
+            plt.axis("off")
+
+            plt.tight_layout()
+            plt.show()
+
+    def show_orb_matches(self, aperio_thumb, kp1, histech_thumb, kp2, matches, max_matches=50):
+        """
+        Display ORB matches between Aperio and Histech thumbnails.
+    
+        Parameters
+        ----------
+        aperio_thumb : ndarray
+            Aperio thumbnail image.
+        kp1 : list
+            Keypoints in Aperio image.
+        histech_thumb : ndarray
+            Histech thumbnail image.
+        kp2 : list
+            Keypoints in Histech image.
+        matches : list
+            List of matched keypoints.
+        max_matches : int
+            Max number of matches to display (default 50).
+        """
+        match_img = cv2.drawMatches(
+            aperio_thumb, kp1,
+            histech_thumb, kp2,
+            matches[:max_matches], 
+            None,
+            flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS
+        )
+        plt.figure(figsize=(15, 8))
+        plt.imshow(match_img)
+        plt.title("ORB Matches Between Aperio and Histech Thumbnails")
+        plt.axis("off")
+        plt.show()
+
+    def save_histech_xml(self, transformed_annotations, region_labels, output_file):
+        """
+        Save transformed annotations to an XML file in the Aperio-style format.
+    
+        Parameters
+        ----------
+        transformed_annotations : list of ndarray
+            List of transformed polygon coordinates.
+        region_labels : list of str
+            Corresponding labels for each annotation.
+        output_file : str
+            Output path to save the XML.
+        """
+        from collections import defaultdict
+
+        root = etree.Element("Annotations", MicronsPerPixel="0.253300")
+           
+        # Group regions by label
+        label_to_coords = defaultdict(list)
+        for coords, label in zip(transformed_annotations, region_labels):
+            label_to_coords[label].append(coords)
+        all_labels = ["Carcinoma", "CAH", "Benign"]
+        # Create one Annotation per label
+        #for annotation_id, (label, coords_list) in enumerate(label_to_coords.items()):
+        for annotation_id, label in enumerate(all_labels):
+            coords_list = label_to_coords.get(label, [])  # get list, empty if missin
+            annotation = etree.SubElement(root, "Annotation", 
+                                          Id=str(annotation_id + 1),
+                                          Name=label,
+                                          ReadOnly="0",
+                                          NameReadOnly="0",
+                                          LineColorReadOnly="0",
+                                          Incremental="0",
+                                          Type="4",
+                                          LineColor="16711935",
+                                          Visible="1",
+                                          Selected="0",
+                                          MarkupImagePath="",
+                                          MacroName="")
+           
+            etree.SubElement(annotation, "Attributes")  # Empty attributes
+           
+            regions = etree.SubElement(annotation, "Regions")
+            for region_id, coords in enumerate(coords_list):
+                region = etree.SubElement(regions, "Region",
+                                          Id=str(region_id + 1),
+                                          Type="0",
+                                          Zoom="0.246743",
+                                          Selected="1",
+                                          ImageLocation="",
+                                          ImageFocus="-1",
+                                          Length="0",
+                                          Area="0",
+                                          LengthMicrons="0",
+                                          AreaMicrons="0",
+                                          Text="",
+                                          NegativeROA="0",
+                                          InputRegionId="0",
+                                          Analyze="1",
+                                          DisplayId=str(region_id + 1))
+           
+                vertices = etree.SubElement(region, "Vertices")
+                for x, y in coords:
+                    etree.SubElement(vertices, "Vertex", X=str(x), Y=str(y), Z="0")
+           
+        tree = etree.ElementTree(root)
+        tree.write(output_file, pretty_print=True, xml_declaration=True, encoding="UTF-8")
+
+    def run(self):
+        """
+        Run the full tissue registration and patch extraction pipeline.
+    
+        This includes:
+        - Loading thumbnails
+        - Computing homography using ORB
+        - Parsing XML annotations
+        - Mapping annotations
+        - Extracting and saving patches
+        - Drawing annotated thumbnails
+        - Saving visualizations
+        """
+        aperio_thumb, aperio_scale = self.load_level_image(self.aperio_slide)
+        histech_thumb, histech_scale = self.load_level_image(self.histech_slide)
+        H = self.register_orb(aperio_thumb, histech_thumb)
+        annotations = self.parse_xml()
+        print(f"Found {len(annotations)} annotations in XML.")
+        aperio_vis = aperio_thumb.copy()
+        histech_vis = histech_thumb.copy()
+    
+        #  Correct: Initialize lists before loop
+        transformed_annotations = []
+        region_labels = []
+    
+        #  Correct: Unpack (aperio_coords, region_label) correctly
+        for i, (aperio_coords, region_label) in enumerate(annotations):
+            histech_coords = self.map_coords(aperio_coords, H, aperio_scale, histech_scale)
+    
+            patch_img, (x, y) = self.crop_polygon(self.histech_slide, histech_coords)
+            patch_img.save(os.path.join(self.histech_dir, f"histech_patch_{i}_from_{x}_{y}.png"))
+    
+            aperio_patch, (ax, ay) = self.crop_polygon(self.aperio_slide, aperio_coords)
+            angle_rad = np.arctan2(H[1, 0], H[0, 0])
+            angle_deg = np.degrees(angle_rad)
+            aperio_patch_rotated = aperio_patch.rotate(-angle_deg, resample=Image.BICUBIC, expand=True)
+            aperio_patch_rotated.save(os.path.join(self.aperio_dir, f"aperio_patch_{i}_rotated_{int(angle_deg)}deg_from_{ax}_{ay}.png"))
+    
+            aperio_poly_thumb = (aperio_coords / aperio_scale).astype(np.int32)
+            histech_poly_thumb = (histech_coords / histech_scale).astype(np.int32)
+    
+            cv2.polylines(aperio_vis, [aperio_poly_thumb], isClosed=True, color=(0, 255, 0), thickness=8)
+            cv2.polylines(histech_vis, [histech_poly_thumb], isClosed=True, color=(0, 255, 0), thickness=16)
+    
+            #  Save mapped coords and corresponding label
+            transformed_annotations.append(histech_coords)
+            region_labels.append(region_label)
+    
+        # Save new XML for Histech
+        histech_filename = os.path.splitext(os.path.basename(self.histech_path))[0]
+        xml_output_path = os.path.join(self.output_base, f"{histech_filename}.xml")
+        self.save_histech_xml(transformed_annotations, region_labels, xml_output_path)
+        print("Saved transformed annotations to:", xml_output_path)
+    
+        Image.fromarray(aperio_vis).save(os.path.join(self.vis_dir, "aperio_annotated_thumb.png"))
+        Image.fromarray(histech_vis).save(os.path.join(self.vis_dir, "histech_registered_thumb.png"))
+    
+        print("Aperio slide levels:", self.aperio_slide.level_dimensions)
+        print("Histech slide levels:", self.histech_slide.level_dimensions)
+        print("\nRegistration complete.")
+        print("Saved Aperio patches to:", self.aperio_dir)
+        print("Saved Histech patches to:", self.histech_dir)
+        print("Saved visualizations to:", self.vis_dir)
+
+def compute_orb_matches(img1, img2):
+    """
+    Compute ORB keypoints and matches between two images.
+    """
+    gray1 = cv2.cvtColor(img1, cv2.COLOR_RGB2GRAY)
+    gray2 = cv2.cvtColor(img2, cv2.COLOR_RGB2GRAY)
+    orb = cv2.ORB_create(5000)
+    kp1, des1 = orb.detectAndCompute(gray1, None)
+    kp2, des2 = orb.detectAndCompute(gray2, None)
+    matcher = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+    matches = matcher.match(des1, des2)
+    matches = sorted(matches, key=lambda x: x.distance)
+    src_pts = np.float32([kp1[m.queryIdx].pt for m in matches])
+    dst_pts = np.float32([kp2[m.trainIdx].pt for m in matches])
+    H, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
+    return H, kp1, kp2, matches
+
+def draw_matches(img1, kp1, img2, kp2, matches, max_matches=50):
+    """
+    Draw ORB matches between two images.
+    """
+    match_img = cv2.drawMatches(img1, kp1, img2, kp2, matches[:max_matches], None, flags=2)
+    plt.figure(figsize=(15, 8))
+    plt.imshow(match_img)
+    plt.title("ORB Matches")
+    plt.axis("off")
+    plt.show()
+
+def load_level2_thumbnail_openslide(slide_path, tiffslide_mode=False):
+    """
+    Load real level-2 thumbnail directly from WSI using read_region, 
+    matching how DataPath tissue_registration loads.
+    """
+    slide = tiffslide.TiffSlide(slide_path) if tiffslide_mode else openslide.OpenSlide(slide_path)
+    dims = slide.level_dimensions[2]  # Level 2 dimensions
+    thumbnail = slide.read_region((0, 0), 2, dims).convert("RGB")
+    return np.array(thumbnail)
