@@ -100,7 +100,11 @@ class tissue_registration:
         region = slide.read_region((0, 0), level, dims).convert("RGB")
         return np.array(region), downsample
 
+<<<<<<< HEAD
     def register_orb(self, moving_img, fixed_img, return_matches=False):
+=======
+    def register_orb(self, moving_img, fixed_img):
+>>>>>>> bc9e0d0543937ba280fc6f0bfbd231720056f874
         """
         Register two images using ORB feature detection and matching.
 
@@ -116,6 +120,7 @@ class tissue_registration:
         H : ndarray
             Estimated homography matrix (3x3).
         """
+<<<<<<< HEAD
         """orb = cv2.ORB_create(5000)
         kp1, des1 = orb.detectAndCompute(moving_img, None)
         kp2, des2 = orb.detectAndCompute(fixed_img, None)
@@ -128,6 +133,8 @@ class tissue_registration:
         return H"""
         
    
+=======
+>>>>>>> bc9e0d0543937ba280fc6f0bfbd231720056f874
         orb = cv2.ORB_create(5000)
         kp1, des1 = orb.detectAndCompute(moving_img, None)
         kp2, des2 = orb.detectAndCompute(fixed_img, None)
@@ -137,12 +144,16 @@ class tissue_registration:
         src_pts = np.float32([kp1[m.queryIdx].pt for m in matches]).reshape(-1, 1, 2)
         dst_pts = np.float32([kp2[m.trainIdx].pt for m in matches]).reshape(-1, 1, 2)
         H, _ = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
+<<<<<<< HEAD
     
         if return_matches:
             return H, kp1, kp2, matches
         else:
             return H
 
+=======
+        return H
+>>>>>>> bc9e0d0543937ba280fc6f0bfbd231720056f874
 
     def parse_xml(self):
         """
@@ -156,6 +167,7 @@ class tissue_registration:
         tree = etree.parse(self.xml_path)
         root = tree.getroot()
         annotations = []
+<<<<<<< HEAD
         for annotation in root.xpath('.//Annotation'):
             region_name = annotation.attrib.get('Name', f"Region")
             for region in annotation.xpath('.//Region'):
@@ -163,6 +175,13 @@ class tissue_registration:
                 coords = [(float(v.attrib['X']), float(v.attrib['Y'])) for v in vertices]
                 if coords:
                     annotations.append((np.array(coords, dtype=np.float32), region_name))
+=======
+        for region in root.xpath('.//Region'):
+            vertices = region.xpath('.//Vertex')
+            coords = [(float(v.attrib['X']), float(v.attrib['Y'])) for v in vertices]
+            if coords:
+                annotations.append(np.array(coords, dtype=np.float32))
+>>>>>>> bc9e0d0543937ba280fc6f0bfbd231720056f874
         return annotations
 
     def map_coords(self, coords, H, scale_from, scale_to):
@@ -248,6 +267,7 @@ class tissue_registration:
         plt.tight_layout()
         plt.show()
 
+<<<<<<< HEAD
     import numpy as np
     import matplotlib.pyplot as plt
 
@@ -367,6 +387,8 @@ class tissue_registration:
             plt.show()
 
 
+=======
+>>>>>>> bc9e0d0543937ba280fc6f0bfbd231720056f874
     def show_registered_patches(self, max_pairs=2):
         """
         Display paired tissue patches extracted from Aperio and Histech slides.
@@ -406,6 +428,7 @@ class tissue_registration:
 
             plt.tight_layout()
             plt.show()
+<<<<<<< HEAD
 
     def show_orb_matches(self, aperio_thumb, kp1, histech_thumb, kp2, matches, max_matches=50):
         """
@@ -442,10 +465,17 @@ class tissue_registration:
     def save_histech_xml(self, transformed_annotations, region_labels, output_file):
         """
         Save transformed annotations to an XML file in the Aperio-style format.
+=======
+            
+    def save_histech_xml(self, transformed_annotations, output_file):
+        """
+        Save transformed annotations to an XML file (Aperio-style format).
+>>>>>>> bc9e0d0543937ba280fc6f0bfbd231720056f874
     
         Parameters
         ----------
         transformed_annotations : list of ndarray
+<<<<<<< HEAD
             List of transformed polygon coordinates.
         region_labels : list of str
             Corresponding labels for each annotation.
@@ -506,11 +536,32 @@ class tissue_registration:
            
         tree = etree.ElementTree(root)
         tree.write(output_file, pretty_print=True, xml_declaration=True, encoding="UTF-8")
+=======
+            List of polygon coordinate arrays mapped to Histech image.
+        output_file : str
+            Path to save the new XML file.
+        """
+        root = etree.Element("Annotations")
+        for i, coords in enumerate(transformed_annotations):
+            annotation = etree.SubElement(root, "Annotation", Id=str(i), Name=f"Region_{i}", Type="Polygon", LineColor="255")
+            region = etree.SubElement(annotation, "Regions")
+            reg = etree.SubElement(region, "Region", Id="0", Type="0", Zoom="1", ImageLocation="", Length="0")
+            vertices = etree.SubElement(reg, "Vertices")
+            for x, y in coords:
+                etree.SubElement(vertices, "Vertex", X=str(x), Y=str(y))
+        tree = etree.ElementTree(root)
+        tree.write(output_file, pretty_print=True, xml_declaration=True, encoding='UTF-8')
+
+>>>>>>> bc9e0d0543937ba280fc6f0bfbd231720056f874
 
     def run(self):
         """
         Run the full tissue registration and patch extraction pipeline.
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> bc9e0d0543937ba280fc6f0bfbd231720056f874
         This includes:
         - Loading thumbnails
         - Computing homography using ORB
@@ -527,6 +578,7 @@ class tissue_registration:
         print(f"Found {len(annotations)} annotations in XML.")
         aperio_vis = aperio_thumb.copy()
         histech_vis = histech_thumb.copy()
+<<<<<<< HEAD
     
         #  Correct: Initialize lists before loop
         transformed_annotations = []
@@ -539,11 +591,21 @@ class tissue_registration:
             patch_img, (x, y) = self.crop_polygon(self.histech_slide, histech_coords)
             patch_img.save(os.path.join(self.histech_dir, f"histech_patch_{i}_from_{x}_{y}.png"))
     
+=======
+
+        for i, aperio_coords in enumerate(annotations):
+            histech_coords = self.map_coords(aperio_coords, H, aperio_scale, histech_scale)
+
+            patch_img, (x, y) = self.crop_polygon(self.histech_slide, histech_coords)
+            patch_img.save(os.path.join(self.histech_dir, f"histech_patch_{i}_from_{x}_{y}.png"))
+
+>>>>>>> bc9e0d0543937ba280fc6f0bfbd231720056f874
             aperio_patch, (ax, ay) = self.crop_polygon(self.aperio_slide, aperio_coords)
             angle_rad = np.arctan2(H[1, 0], H[0, 0])
             angle_deg = np.degrees(angle_rad)
             aperio_patch_rotated = aperio_patch.rotate(-angle_deg, resample=Image.BICUBIC, expand=True)
             aperio_patch_rotated.save(os.path.join(self.aperio_dir, f"aperio_patch_{i}_rotated_{int(angle_deg)}deg_from_{ax}_{ay}.png"))
+<<<<<<< HEAD
     
             aperio_poly_thumb = (aperio_coords / aperio_scale).astype(np.int32)
             histech_poly_thumb = (histech_coords / histech_scale).astype(np.int32)
@@ -608,3 +670,31 @@ def load_level2_thumbnail_openslide(slide_path, tiffslide_mode=False):
     dims = slide.level_dimensions[2]  # Level 2 dimensions
     thumbnail = slide.read_region((0, 0), 2, dims).convert("RGB")
     return np.array(thumbnail)
+=======
+
+            aperio_poly_thumb = (aperio_coords / aperio_scale).astype(np.int32)
+            histech_poly_thumb = (histech_coords / histech_scale).astype(np.int32)
+
+            cv2.polylines(aperio_vis, [aperio_poly_thumb], isClosed=True, color=(0, 255, 0), thickness=8)
+            cv2.polylines(histech_vis, [histech_poly_thumb], isClosed=True, color=(0, 255, 0), thickness=16)
+            # Collect transformed annotations
+            transformed_annotations = []
+            for aperio_coords in annotations:
+                histech_coords = self.map_coords(aperio_coords, H, aperio_scale, histech_scale)
+                transformed_annotations.append(histech_coords)
+            
+        # Save new XML for Histech
+        xml_output_path = os.path.join(self.output_base, "histech_annotations.xml")
+        self.save_histech_xml(transformed_annotations, xml_output_path)
+        print(" Saved transformed annotations to:", xml_output_path)
+
+        Image.fromarray(aperio_vis).save(os.path.join(self.vis_dir, "aperio_annotated_thumb.png"))
+        Image.fromarray(histech_vis).save(os.path.join(self.vis_dir, "histech_registered_thumb.png"))
+
+        print("Aperio slide levels:", self.aperio_slide.level_dimensions)
+        print("Histech slide levels:", self.histech_slide.level_dimensions)
+        print("\n Registration complete.")
+        print(" Saved Aperio patches to:", self.aperio_dir)
+        print(" Saved Histech patches to:", self.histech_dir)
+        print(" Saved visualizations to:", self.vis_dir)
+>>>>>>> bc9e0d0543937ba280fc6f0bfbd231720056f874
