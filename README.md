@@ -25,7 +25,8 @@ There are several modules in this package including
 3.	Patch Extraction: Assists pathologists and developers in extracting image patches from a whole slide image's region of interest.
 4.	Color Normalization: Implements multiple methods (Macenko, Vahadane, Reinhard, and Histogram Matching) to normalize staining variability across slides, ensuring consistency in downstream AI analysis.
 5.	WSI Tissue Registration: Provides classical feature-based registration algorithm - ORB to align serial or cross-stained tissue sections, with support for homography and similarity transforms.
-6.	Stratification: Offers tools to split and visualize datasets based on metadata for balanced train/val/test splits and reproducible AI model training.  
+6.	Stratification: Offers tools to split and visualize datasets based on metadata for balanced train/val/test splits and reproducible AI model training.
+7.	WSI Duplicate Detection: Identifying duplicate whole slide images in a given dataset to assist AI model developers in understanding the dataset for training purposes
 
 ### Information for Developers
 Code Documentation: [Link](https://didsr.github.io/DataPath/index.html)
