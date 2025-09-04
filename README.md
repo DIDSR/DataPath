@@ -17,7 +17,6 @@
 ### General Information
 **`DataPath`** is an open-source computational pathology toolbox designed to support researchers and regulatory scientists in the preparation and analysis of whole slide images (WSIs). Developed to streamline and standardize WSI workflows, DataPath offers modular tools for stain normalization, color harmonization, tissue registration, and data stratification. By ensuring consistency and quality across diverse histopathology datasets, it facilitates the creation of AI-ready datasets suitable for robust algorithm development, validation, and evaluation. For more information, please contact: **[seyed.kahaki@fda.hhs.gov](mailto:seyed.kahaki@fda.hhs.gov)**.
 
-We are continuously working on this toolbox, and we welcome any contributions.
 
 ### Modules
 There are several modules in this package including
