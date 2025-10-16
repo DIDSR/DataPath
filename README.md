@@ -29,7 +29,7 @@ Please refer to the code documentation and email  **[seyed.kahaki@fda.hhs.gov](m
 
 ## Installation
 
-To set up the HistoArt environment, first clone this repository and navigate to the project directory:
+To set up the DataPath environment, first clone this repository and navigate to the project directory:
 
 ```bash
 git clone https://github.com/DIDSR/DataPath.git
@@ -39,7 +39,7 @@ cd DataPath
 Create a virtual environment and install dependencies from the provided `requirements.txt`:
 
 ```bash
-python3 -m venv histoart_env
+python3 -m venv datapath_env
 source datapath_env/bin/activate
 pip install -r requirements.txt
 ```
@@ -70,7 +70,7 @@ torchvision==0.20.1
 
 ## Getting Started Examples
 
-Several Jupyter notebooks and scripts are provided to quickly familiarize you with the capabilities and usage of HistoArt:
+Several Jupyter notebooks and scripts are provided to quickly familiarize you with the capabilities and usage of DataPath:
 
 1. [WSI Handler](https://github.com/DIDSR/DataPath/blob/main/01_read_wsi.ipynb)
 2. [Annotation Extraction](https://github.com/DIDSR/DataPath/blob/main/02_annotation_extraction.ipynb)
@@ -84,12 +84,12 @@ Several Jupyter notebooks and scripts are provided to quickly familiarize you wi
 
 ## How to Cite
 
-If you utilize HistoArt in your research or applications, please cite the repository:
+If you utilize DataPath in your research or applications, please cite the repository:
 
 ```bibtex
 @misc{DataPath2025,
   author = {Seyed M. Kahaki, Tanviben Patel, Alexander R. Webber, Weijie Chen},
-  title = {HistoArt},
+  title = {DataPath},
   year = {2025},
   publisher = {GitHub},
   journal = {GitHub Repository},
