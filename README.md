@@ -32,8 +32,8 @@ Please refer to the code documentation and email  **[seyed.kahaki@fda.hhs.gov](m
 To set up the HistoArt environment, first clone this repository and navigate to the project directory:
 
 ```bash
-git clone https://github.com/DIDSR/HistoART.git
-cd HistoArt
+git clone https://github.com/DIDSR/DataPath.git
+cd DataPath
 ```
 
 Create a virtual environment and install dependencies from the provided `requirements.txt`:
