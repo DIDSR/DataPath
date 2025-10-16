@@ -40,7 +40,7 @@ Create a virtual environment and install dependencies from the provided `require
 
 ```bash
 python3 -m venv histoart_env
-source histoart_env/bin/activate
+source datapath_env/bin/activate
 pip install -r requirements.txt
 ```
 
