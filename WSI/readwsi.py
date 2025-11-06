@@ -34,7 +34,7 @@ Version ='1.0'
 #from PIL import Image
 import os
 #from glob import glob
-OPENSLIDE_PATH = r'C:\DATA\openslide-bin-4.0.0.8-windows-x64\openslide-bin-4.0.0.8-windows-x64\bin' # Replace with openslide DIR
+OPENSLIDE_PATH = r'..\..\DATA\openslide-bin-4.0.0.8-windows-x64\openslide-bin-4.0.0.8-windows-x64\bin' # Replace with openslide DIR
 
 import os
 if hasattr(os, 'add_dll_directory'):

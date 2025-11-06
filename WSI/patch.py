@@ -228,7 +228,6 @@ class WSIpatch_extractor:
             patchimg = Slide.read_region((spointx, spointy), level, (patch_size, patch_size))                        
             #patchimg.convert('RGB')
 
-           # cv2.imwrite(f"C:/Users/masoud/data/patch_{str(num_p)}.tif", np.array(patchimg))
             temp_tile_RGB = patchimg.convert('RGB')
             temp_tile_np = np.array(temp_tile_RGB)
             
