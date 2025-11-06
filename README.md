@@ -82,25 +82,6 @@ Several Jupyter notebooks and scripts are provided to quickly familiarize you wi
 
 ---
 
-## How to Cite
-
-If you utilize DataPath in your research or applications, please cite the repository:
-
-```bibtex
-@misc{DataPath2025,
-  author = {Seyed M. Kahaki, Tanviben Patel, Alexander R. Webber, Weijie Chen},
-  title = {DataPath},
-  year = {2025},
-  publisher = {GitHub},
-  journal = {GitHub Repository},
-  howpublished = {\url{https://github.com/DIDSR/DataPath}},
-}
-```
-
-
-
----
-
 ## Contact and Contributions
 
 For any inquiries, suggestions, or collaborative opportunities, please contact Seyed Kahaki either via this GitHub repo or via email (seyed.kahaki@fda.hhs.gov).
