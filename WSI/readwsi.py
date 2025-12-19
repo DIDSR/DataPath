@@ -33,17 +33,7 @@ Version ='1.0'
 #from skimage.io import imsave, imread
 #from PIL import Image
 import os
-#from glob import glob
-OPENSLIDE_PATH = r'..\..\DATA\openslide-bin-4.0.0.8-windows-x64\openslide-bin-4.0.0.8-windows-x64\bin' # Replace with openslide DIR
-
-import os
-if hasattr(os, 'add_dll_directory'):
-    # Windows
-    with os.add_dll_directory(OPENSLIDE_PATH):
-        import openslide
-else:
-    import openslide
-#import openslide
+import openslide
 #from openslide.deepzoom import DeepZoomGenerator
 #from pathlib import Path
 #import tifffile as tiff

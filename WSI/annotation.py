@@ -33,9 +33,6 @@ import math
 highsize = False
 
 class AnnotationExtractor :
-    def __init__(self):
-        pass
-
     
     def make_folder(self,directory):
         """
@@ -49,8 +46,7 @@ class AnnotationExtractor :
             None : None
                 None.
         """
-        if not os.path.exists(directory):
-            os.makedirs(directory)
+        os.makedirs(directory, exist_ok=True)
 
     def extract_ann(self,save_dir,XMLs,WSIs,vis=False,save_mask=False):
         """
