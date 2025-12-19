@@ -1,0 +1,321 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home &mdash; DataPath 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=51b770b3"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            DataPath
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Home</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputrequirements.html">Data (Input/Output) Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotation.html">Annotation Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patch.html">Patch Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="color_normalization.html">Color Normalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tissue_registration.html">Tissue Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stratification.html">Stratification and Dataset Splitting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">DataPath</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Home</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home">
+<h1>Home<a class="headerlink" href="#home" title="Link to this heading"></a></h1>
+<section id="about-datapath">
+<h2>About DataPath<a class="headerlink" href="#about-datapath" title="Link to this heading"></a></h2>
+<p>The Whole Slide Image Processing and Machine Learning Performance Assessment Tool is a software program written in Python for analyzing whole slide images (WSIs), assisting pathologists in the assessment of machine learning (ML) results, and evaluating ML performance.</p>
+<p>The toolbox includes modules to:
+- Generate image patches for AI/ML models
+- Extract and visualize annotations from WSIs
+- Generate Aperio ImageScope annotation files for pathologist validation
+- Normalize stain color across images
+- Register slides across scanners
+- Split datasets with category/subtype-aware stratification
+- Assess model performance and metrics</p>
+<p>The Whole Slide Image Processing and Performance Assessment Tool code has been used in the following publications:</p>
+<ul class="simple">
+<li><p>Kahaki, Seyed, et al. “Weakly supervised deep learning for predicting the response to hormonal treatment of women with atypical endometrial hyperplasia: a feasibility study.” Medical Imaging 2023: Digital and Computational Pathology. Vol. 12471. SPIE, 2023.</p></li>
+<li><p>Kahaki, Seyed, et al. “Supervised deep learning model for ROI detection of atypical endometrial hyperplasia and endometrial cancer on histopathology whole slide images for predicting hormonal treatment response.” Medical Imaging 2024: Digital and Computational Pathology.</p></li>
+<li><p>Kahaki, Seyed, et al. “End-to-End Deep Learning Method for Predicting Hormonal Treatment Response in Women with Atypical Endometrial Hyperplasia or Endometrial Cancer.” Journal of Medical Imaging, Journal of Medical Imaging, Under Review</p></li>
+<li><p>Mariia Sidulova, et al. “Contextual unsupervised deep clustering of digital pathology dataset”, Submitted to ISBI 2024</p></li>
+</ul>
+</section>
+<section id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Link to this heading"></a></h2>
+<p>There are several modules in this package including:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>WSI handler: includes functions and classes for general WSI analysis such as read whole slide images, tissue segmentation, and normalization.</p></li>
+<li><p>Annotation Extraction: this module includes several functions for processing annotations such as annotation extraction.</p></li>
+<li><p>Patch Extraction: which assist pathologist and developers in extracting image patches from whole slide images region of interest.</p></li>
+<li><p>Color Normalization: Normalizes stain color using Macenko, Vahadane, Reinhard, and histogram matching methods.</p></li>
+<li><p>Tissue Registration: Registers tissue regions between WSIs scanned from different scanners using ORB-based alignment.</p></li>
+<li><p>Stratification: Splits datasets into train/val/test while preserving class balance across categories and subtypes.</p></li>
+</ol>
+</div></blockquote>
+<p>To see a demo of the functions in this toolbox, please refer to the Jupyter Notebooks files in the root folder of this package.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/mousavikahaki/ValidPath/blob/main/01_read_wsi.ipynb">01_read_wsi.ipynb</a></p></li>
+<li><p><a class="reference external" href="https://github.com/mousavikahaki/ValidPath/blob/main/02_annotation_extraction.ipynb">02_annotation_extraction.ipynb</a></p></li>
+<li><p><a class="reference external" href="https://github.com/mousavikahaki/ValidPath/blob/main/03_patch_extraction.ipynb">03_patch_extraction.ipynb</a></p></li>
+<li><p><a class="reference external" href="https://github.com/mousavikahaki/ValidPath/blob/main/04_color_normalization.ipynb">04_color_normalization.ipynb</a></p></li>
+<li><p><a class="reference external" href="https://github.com/mousavikahaki/ValidPath/blob/main/05_tissue_registration.ipynb">05_tissue_registration.ipynb</a></p></li>
+<li><p><a class="reference external" href="https://github.com/mousavikahaki/ValidPath/blob/main/06_stratification.ipynb">06_stratification.ipynb</a></p></li>
+</ul>
+</div></blockquote>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#required-packages">Required Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-using-anaconda">Installation Using Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installing-datapath-using-anaconda">Installing DataPath using Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#direct-installation-of-datapath">Direct Installation of DataPath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#from-source">From Source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inputrequirements.html">Data (Input/Output) Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inputrequirements.html#wsi-handler">WSI Handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputrequirements.html#annotation-extraction">Annotation Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputrequirements.html#patch-extraction">Patch Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputrequirements.html#annotation-file-generator">Annotation File Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputrequirements.html#performance-assessment">Performance Assessment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="annotation.html">Annotation Extraction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="annotation.html#wsi-annotation-module">WSI.annotation module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="annotation.html#WSI.annotation.AnnotationExtractor"><code class="docutils literal notranslate"><span class="pre">AnnotationExtractor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="annotation.html#WSI.annotation.AnnotationExtractor.extract_ann"><code class="docutils literal notranslate"><span class="pre">AnnotationExtractor.extract_ann()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="annotation.html#WSI.annotation.AnnotationExtractor.make_folder"><code class="docutils literal notranslate"><span class="pre">AnnotationExtractor.make_folder()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="annotation.html#about-this-module">About this module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annotation.html#loading-required-packages">Loading Required Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annotation.html#read-whole-slide-image-and-xml-files">Read Whole Slide Image and XML files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annotation.html#extracting-annotation">Extracting Annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annotation.html#extracting-annotation-and-mask">Extracting Annotation and Mask</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="patch.html">Patch Extraction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="patch.html#module-WSI.patch">WSI.patch module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="patch.html#WSI.patch.PatchExtractor"><code class="docutils literal notranslate"><span class="pre">PatchExtractor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="patch.html#WSI.patch.PatchExtractor.find_between"><code class="docutils literal notranslate"><span class="pre">PatchExtractor.find_between()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="patch.html#WSI.patch.PatchExtractor.gen_patch"><code class="docutils literal notranslate"><span class="pre">PatchExtractor.gen_patch()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="patch.html#WSI.patch.WSIpatch_extractor"><code class="docutils literal notranslate"><span class="pre">WSIpatch_extractor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="patch.html#WSI.patch.WSIpatch_extractor.patch_extraction"><code class="docutils literal notranslate"><span class="pre">WSIpatch_extractor.patch_extraction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="patch.html#WSI.patch.WSIpatch_extractor.patch_extraction_of_tissue"><code class="docutils literal notranslate"><span class="pre">WSIpatch_extractor.patch_extraction_of_tissue()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="patch.html#WSI.patch.WSIpatch_extractor.patch_extraction_with_normalized_tiles"><code class="docutils literal notranslate"><span class="pre">WSIpatch_extractor.patch_extraction_with_normalized_tiles()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="patch.html#about-this-module">About this module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="patch.html#loading-required-packages">Loading Required Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="patch.html#patch-extraction-from-annotated-area">Patch Extraction from Annotated Area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="patch.html#patch-extraction-from-the-entire-wsi">Patch Extraction from the entire WSI</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="color_normalization.html">Color Normalization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="color_normalization.html#module-WSI.color_normalization">WSI.color_normalization module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization"><code class="docutils literal notranslate"><span class="pre">color_normalization</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.OD_to_RGB"><code class="docutils literal notranslate"><span class="pre">color_normalization.OD_to_RGB()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.RGB_to_OD"><code class="docutils literal notranslate"><span class="pre">color_normalization.RGB_to_OD()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.__init__"><code class="docutils literal notranslate"><span class="pre">color_normalization.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.compute_hue_saturation_stats"><code class="docutils literal notranslate"><span class="pre">color_normalization.compute_hue_saturation_stats()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.fit_macenko"><code class="docutils literal notranslate"><span class="pre">color_normalization.fit_macenko()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.fit_reinhard"><code class="docutils literal notranslate"><span class="pre">color_normalization.fit_reinhard()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.fit_vahadane"><code class="docutils literal notranslate"><span class="pre">color_normalization.fit_vahadane()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.get_mean_std"><code class="docutils literal notranslate"><span class="pre">color_normalization.get_mean_std()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.get_stain_matrix_M"><code class="docutils literal notranslate"><span class="pre">color_normalization.get_stain_matrix_M()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.get_stain_matrix_V"><code class="docutils literal notranslate"><span class="pre">color_normalization.get_stain_matrix_V()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.lab_split"><code class="docutils literal notranslate"><span class="pre">color_normalization.lab_split()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.load_image"><code class="docutils literal notranslate"><span class="pre">color_normalization.load_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.load_images_from_folder"><code class="docutils literal notranslate"><span class="pre">color_normalization.load_images_from_folder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.match_histograms"><code class="docutils literal notranslate"><span class="pre">color_normalization.match_histograms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.merge_back"><code class="docutils literal notranslate"><span class="pre">color_normalization.merge_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.normalize_rows"><code class="docutils literal notranslate"><span class="pre">color_normalization.normalize_rows()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.plot_all_normalization_comparison"><code class="docutils literal notranslate"><span class="pre">color_normalization.plot_all_normalization_comparison()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.plot_images"><code class="docutils literal notranslate"><span class="pre">color_normalization.plot_images()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.plot_scatter_grid"><code class="docutils literal notranslate"><span class="pre">color_normalization.plot_scatter_grid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.process_image_folder"><code class="docutils literal notranslate"><span class="pre">color_normalization.process_image_folder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.process_single_image"><code class="docutils literal notranslate"><span class="pre">color_normalization.process_single_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.remove_zeros"><code class="docutils literal notranslate"><span class="pre">color_normalization.remove_zeros()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.show"><code class="docutils literal notranslate"><span class="pre">color_normalization.show()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.show_colors"><code class="docutils literal notranslate"><span class="pre">color_normalization.show_colors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.standardize_brightness"><code class="docutils literal notranslate"><span class="pre">color_normalization.standardize_brightness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.transform_histogram"><code class="docutils literal notranslate"><span class="pre">color_normalization.transform_histogram()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.transform_macenko"><code class="docutils literal notranslate"><span class="pre">color_normalization.transform_macenko()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.transform_reinhard"><code class="docutils literal notranslate"><span class="pre">color_normalization.transform_reinhard()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_normalization.html#WSI.color_normalization.color_normalization.transform_vahadane"><code class="docutils literal notranslate"><span class="pre">color_normalization.transform_vahadane()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="color_normalization.html#about-this-module">About this module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="color_normalization.html#loading-required-packages">Loading Required Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="color_normalization.html#load-source-and-target-images">Load Source and Target Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="color_normalization.html#apply-normalization-methods">Apply Normalization Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="color_normalization.html#compare-results">Compare Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="color_normalization.html#batch-normalization">Batch Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="color_normalization.html#hue-saturation-stats-visualization">Hue/Saturation Stats Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="color_normalization.html#usage-example">Usage Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="color_normalization.html#image-display">Image Display</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tissue_registration.html">Tissue Registration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tissue_registration.html#module-WSI.tissue_registration">WSI.tissue_registration module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tissue_registration.html#WSI.tissue_registration.tissue_registration"><code class="docutils literal notranslate"><span class="pre">tissue_registration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tissue_registration.html#WSI.tissue_registration.tissue_registration.__init__"><code class="docutils literal notranslate"><span class="pre">tissue_registration.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tissue_registration.html#WSI.tissue_registration.tissue_registration.crop_polygon"><code class="docutils literal notranslate"><span class="pre">tissue_registration.crop_polygon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tissue_registration.html#WSI.tissue_registration.tissue_registration.load_level_image"><code class="docutils literal notranslate"><span class="pre">tissue_registration.load_level_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tissue_registration.html#WSI.tissue_registration.tissue_registration.map_coords"><code class="docutils literal notranslate"><span class="pre">tissue_registration.map_coords()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tissue_registration.html#WSI.tissue_registration.tissue_registration.parse_xml"><code class="docutils literal notranslate"><span class="pre">tissue_registration.parse_xml()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tissue_registration.html#WSI.tissue_registration.tissue_registration.register_orb"><code class="docutils literal notranslate"><span class="pre">tissue_registration.register_orb()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tissue_registration.html#WSI.tissue_registration.tissue_registration.run"><code class="docutils literal notranslate"><span class="pre">tissue_registration.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tissue_registration.html#WSI.tissue_registration.tissue_registration.show_annotated_thumbnails"><code class="docutils literal notranslate"><span class="pre">tissue_registration.show_annotated_thumbnails()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tissue_registration.html#WSI.tissue_registration.tissue_registration.show_registered_patches"><code class="docutils literal notranslate"><span class="pre">tissue_registration.show_registered_patches()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tissue_registration.html#about-this-module">About this module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tissue_registration.html#loading-required-packages">Loading Required Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tissue_registration.html#input-structure">Input Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tissue_registration.html#running-the-pipeline">Running the Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tissue_registration.html#visualizing-the-results">Visualizing the Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tissue_registration.html#outputs">Outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stratification.html">Stratification and Dataset Splitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stratification.html#module-WSI.stratification">WSI.stratification module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="stratification.html#WSI.stratification.stratification"><code class="docutils literal notranslate"><span class="pre">stratification</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="stratification.html#WSI.stratification.stratification.__init__"><code class="docutils literal notranslate"><span class="pre">stratification.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="stratification.html#WSI.stratification.stratification.plot_category_distribution"><code class="docutils literal notranslate"><span class="pre">stratification.plot_category_distribution()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="stratification.html#WSI.stratification.stratification.plot_category_split_distribution"><code class="docutils literal notranslate"><span class="pre">stratification.plot_category_split_distribution()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="stratification.html#WSI.stratification.stratification.plot_subtype_distribution"><code class="docutils literal notranslate"><span class="pre">stratification.plot_subtype_distribution()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="stratification.html#WSI.stratification.stratification.split_random"><code class="docutils literal notranslate"><span class="pre">stratification.split_random()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="stratification.html#WSI.stratification.stratification.split_random_by_category"><code class="docutils literal notranslate"><span class="pre">stratification.split_random_by_category()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="stratification.html#WSI.stratification.stratification.split_stratified"><code class="docutils literal notranslate"><span class="pre">stratification.split_stratified()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="stratification.html#WSI.stratification.stratification.split_stratified_by_category"><code class="docutils literal notranslate"><span class="pre">stratification.split_stratified_by_category()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="stratification.html#about-this-module">About this module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stratification.html#loading-required-packages">Loading Required Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stratification.html#dataset-organization">Dataset Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stratification.html#create-the-stratification-object">Create the Stratification Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stratification.html#perform-dataset-splits">Perform Dataset Splits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stratification.html#visualize-class-distribution">Visualize Class Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stratification.html#saving-and-reusing-splits-optional">Saving and Reusing Splits (Optional)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Tanviben Patel and Seyed Kahaki.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
