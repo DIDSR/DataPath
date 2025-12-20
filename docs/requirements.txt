@@ -1,0 +1,5 @@
+sphinx>=5
+sphinx-rtd-theme
+# any extensions you import in docs/conf.py, e.g.:
+# myst-parser
+# sphinx-autodoc-typehints
