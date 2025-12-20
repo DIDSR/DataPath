@@ -1,38 +1,35 @@
 # Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-# -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 import os
 import sys
-sys.path.insert(0,os.path.abspath(".."))
-#sys.path.insert(0,os.path.abspath("C:\\temp\\openslide-win64-20171122\\bin"))
-#sys.path.insert(0,os.path.abspath("C:\\Users\\SeyedM.MousaviKahaki\\Documents\\slidepro\\wsitoolbox"))
+from datetime import datetime
+
+# -- Path setup --------------------------------------------------------------
+# Make the project root importable for autodoc (repo_root/)
+DOCS_DIR = os.path.abspath(os.path.dirname(__file__))
+REPO_ROOT = os.path.abspath(os.path.join(DOCS_DIR, ".."))
+sys.path.insert(0, REPO_ROOT)
 
 # -- Project information -----------------------------------------------------
-project = 'DataPath'
-copyright = '2025, Tanviben Patel and Seyed Kahaki'
-authors = 'Tanviben Patel and Seyed Kahaki'
-release = '2.0.0'
+project = "DataPath"
+author = "Tanviben Patel and Seyed Kahaki"
+copyright = f"{datetime.now().year}, {author}"
+release = "2.0.0"
 
 # -- General configuration ---------------------------------------------------
 extensions = [
-    "sphinx.ext.todo",
+    "sphinx.ext.autodoc",
     "sphinx.ext.viewcode",
-    "sphinx.ext.autodoc"
+    "sphinx.ext.todo",
 ]
 
-templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+templates_path = ["_templates"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # -- Options for HTML output -------------------------------------------------
-html_theme = 'sphinx_rtd_theme'
-html_static_path = ['_static']
+html_theme = "sphinx_rtd_theme"
+html_static_path = ["_static"]
 
-# Optional: force copying of extra static content
-html_extra_path = ['_static']
-
-
-
+# -- Optional: todo settings -------------------------------------------------
+todo_include_todos = True
