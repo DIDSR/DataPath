@@ -14,7 +14,7 @@ About this module
 --------------------------------------------------------
 This demonstration guides you through the process extracting image regions from the WSI. We achieve this through using DataPath's Annotation Extractor class. This demonstration should provide you with the instruction to use DataPath for extracting annotations and the annotation masks.
 
-.. image:: ../img/ann_extraction.png
+.. image:: img/ann_extraction.png
    :width: 300px
    :align: center
 
@@ -56,7 +56,7 @@ In this section, we read WSIs and XML files from a given directory and create a 
 	
 After reading the list of WSIs and XML files, you should be able to see the list of loaded files similar to the following output: 
 
-.. image:: ../img/ann_extraction1.png
+.. image:: img/ann_extraction1.png
    :width: 800px
    :align: center
 
@@ -81,7 +81,7 @@ You also can set the visualization parameter to “True” in order to extract t
 
 This will plot each extracted annotation in the output similar to the following:
 
-.. image:: ../img/ann_extraction2.png
+.. image:: img/ann_extraction2.png
    :width: 300px
    :align: center
 
@@ -100,6 +100,6 @@ The extract_ann method of the AnnotationExtractor class allows you to extract bo
 	
 running this code will extract both annotations and corresponding mask, save them into the save directory and visualize the mask and annotation in the output similar to the following screenshot.
 
-.. image:: ../img/ann_extraction3.png
+.. image:: img/ann_extraction3.png
    :width: 300px
    :align: center
