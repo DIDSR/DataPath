@@ -94,9 +94,9 @@ Performance Assessment
 
 
 	
-.. image:: ../img/assessment_output_example1.png
+.. image:: img/assessment_output_example1.png
    :width: 300px
    :align: center
-.. image:: ../img/assessment_output_example2.png
+.. image:: img/assessment_output_example2.png
    :width: 300px
    :align: center
