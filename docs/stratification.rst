@@ -20,7 +20,7 @@ Stratification can be performed at two levels:
 
 The module also offers visualization tools to help assess class distribution across different dataset splits — which is especially important in medical imaging and machine learning applications to avoid data imbalance and biased model training.
 
-.. image:: ../img/stratification_overview.png
+.. image:: img/stratification_overview.png
    :width: 600px
    :align: center
 
@@ -128,7 +128,7 @@ Visualize Class Distribution
     }
     stratifier.plot_category_split_distribution(split_dict)
 
-.. image:: ../img/stratification_category_split.png
+.. image:: img/stratification_category_split.png
    :width: 700px
    :align: center
 
@@ -143,7 +143,7 @@ Visualize Class Distribution
     }
     stratifier.plot_subtype_distribution(subtype_dict)
 
-.. image:: ../img/stratification_subtype_split.png
+.. image:: img/stratification_subtype_split.png
    :width: 700px
    :align: center
 
