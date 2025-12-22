@@ -16,37 +16,37 @@ This demonstration guides you through the process of using ValidPath to for perf
 
 	Confusion Matrix
  
-.. image:: ../img/assessment1.PNG
+.. image:: img/assessment1.PNG
    :width: 300px
    :align: center
  
 	Precision and its confidence interval.
 
-.. image:: ../img/assessment2.PNG
+.. image:: img/assessment2.PNG
    :width: 300px
    :align: center 
 
 	Recall/Sensitivity and its confidence interval.
 
-.. image:: ../img/assessment3.PNG
+.. image:: img/assessment3.PNG
    :width: 300px
    :align: center
  
 	F1 Score and its confidence interval.
 
-.. image:: ../img/assessment4.PNG
+.. image:: img/assessment4.PNG
    :width: 300px
    :align: center
 
 	Accuracy
 
-.. image:: ../img/assessment5.PNG
+.. image:: img/assessment5.PNG
    :width: 300px
    :align: center
 
 	AUC, and its confidence interval
 	
-.. image:: ../img/assessment6.PNG
+.. image:: img/assessment6.PNG
    :width: 300px
    :align: center
 
@@ -107,7 +107,7 @@ You can run the following code to generate classification report:
 	
 After running the code and provide the input data, you will see the performance report like the following:
 
-.. image:: ../img/assessment7.PNG
+.. image:: img/assessment7.PNG
    :width: 300px
    :align: center	
 	
