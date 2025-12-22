@@ -17,7 +17,7 @@ This demonstration guides you through the process of utilizing DataPath to inter
 After successfully loading the WSI, we proceed to extract key information about the image. This involves identifying and WSI characteristics such as the WSI's dimensions, the number of image layers, and the magnification levels. By understanding these attributes, we can more effectively analyze the slide and extract relevant sections for further study. Let’s start with the environment configuration.
 
 
-.. image:: ../img/handler1.PNG
+.. image:: img/handler1.PNG
    :width: 300px
    :align: center
    
@@ -103,7 +103,7 @@ To see a thumbnail of the WSI, we use the get_thumbnail method of WSIReader. We 
 	
 after running the code and provide the x and y size of the thumbnail and plot it, the output should look like this:
 
-.. image:: ../img/handler2.PNG
+.. image:: img/handler2.PNG
    :width: 300px
    :align: center
  
@@ -152,7 +152,7 @@ Now we call the reader from the WSI object and plot a small size WSI:
 
 Output Example:
 
-.. image:: ../img/handler3.PNG
+.. image:: img/handler3.PNG
    :width: 300px
    :align: center
  
@@ -172,7 +172,7 @@ Next, we will read a region of the whole slide image at a given location and siz
 
 After running the code and entering the requested information, the code will plot the region of the WSI, similar to the following image.
 
-.. image:: ../img/handler4.PNG
+.. image:: img/handler4.PNG
    :width: 300px
    :align: center
 
@@ -216,7 +216,7 @@ Now, let’s set the start and end points and get the WSI region using the coord
 
 The output should look like this:
 
-.. image:: ../img/handler5.PNG
+.. image:: img/handler5.PNG
    :width: 300px
    :align: center
  
