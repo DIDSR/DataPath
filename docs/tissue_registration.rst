@@ -20,7 +20,7 @@ The key class is `tissue_registration`, which contains all logic to perform:
 - Patch extraction
 - Registration visualization
 
-.. image:: ../img/registration_overview.png
+.. image:: img/registration_overview.png
    :width: 600px
    :align: center
 
@@ -92,7 +92,7 @@ After running the pipeline, you can visualize the thumbnails with overlaid annot
 
     reg.show_annotated_thumbnails()
 
-.. image:: ../img/registration_thumbnail.png
+.. image:: img/registration_thumbnail.png
    :width: 600px
    :align: center
 
@@ -102,7 +102,7 @@ To view paired extracted patches side by side:
 
     reg.show_registered_patches(max_pairs=2)
 
-.. image:: ../img/registration_patches.png
+.. image:: img/registration_patches.png
    :width: 600px
    :align: center
 
