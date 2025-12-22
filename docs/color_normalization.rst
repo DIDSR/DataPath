@@ -17,7 +17,7 @@ This module provides color normalization utilities for histopathology Whole Slid
 
 The goal is to reduce color variation across slides from different sources or batches, enabling more consistent analysis downstream.
 
-.. image:: ../img/normalization_overview.png
+.. image:: img/normalization_overview.png
    :width: 600px
    :align: center
 
@@ -80,7 +80,7 @@ You can use the visualization utility to compare different methods across multip
                                          methods=["Macenko", "Vahadane", "Reinhard", "Histogram"],
                                          target_image_path="path/to/target.jpg")
 
-.. image:: ../img/normalization_comparison.png
+.. image:: img/normalization_comparison.png
    :width: 600px
    :align: center
 
@@ -118,6 +118,6 @@ Usage Example
 Image Display
 -------------
 
-.. image:: ../img/color_norm_example.png
+.. image:: img/color_norm_example.png
    :width: 600px
    :alt: Color normalization examples
