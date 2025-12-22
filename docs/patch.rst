@@ -15,7 +15,7 @@ About this module
 
 This demonstration guides you through the process of using ValidPath to extract patches within annotations. This feature enabled using the patch_extraction method.
 
-.. image:: ../img/patch_extraction.PNG
+.. image:: img/patch_extraction.PNG
    :width: 300px
    :align: center
    
