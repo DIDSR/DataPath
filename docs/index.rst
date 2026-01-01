@@ -51,7 +51,9 @@ To see a demo of the functions in this toolbox, please refer to the Jupyter Note
 
 	•	05_tissue_registration.ipynb_
 
-    	•	06_stratification.ipynb_
+    •	06_stratification.ipynb_
+
+	•	07_duplicate_detection.ipynb_
     
 .. _01_read_wsi.ipynb: https://github.com/mousavikahaki/ValidPath/blob/main/01_read_wsi.ipynb
 
@@ -64,6 +66,8 @@ To see a demo of the functions in this toolbox, please refer to the Jupyter Note
 .. _05_tissue_registration.ipynb: https://github.com/mousavikahaki/ValidPath/blob/main/05_tissue_registration.ipynb
 
 .. _06_stratification.ipynb: https://github.com/mousavikahaki/ValidPath/blob/main/06_stratification.ipynb
+
+.._07_duplicate_detection.ipynb: https://github.com/mousavikahaki/ValidPath/blob/main/07_duplicate_detection.ipynb
 
 .. toctree::
    :hidden:
@@ -83,7 +87,7 @@ To see a demo of the functions in this toolbox, please refer to the Jupyter Note
    color_normalization
    tissue_registration
    stratification
-
+   duplicate_detection
 
 
 Indices and tables
