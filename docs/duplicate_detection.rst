@@ -42,7 +42,7 @@ Figure: Duplicate detection example
 The figure below shows thumbnails from the two WSIs used for comparison and the
 resulting perceptual hashes with the computed normalized Hamming distance.
 
-.. image:: img/duplicate_detection_example.png
+.. image:: img/duplicate_detection.png
    :width: 900px
    :align: center
    :alt: WSI duplicate detection using perceptual hashing and normalized Hamming distance.
@@ -95,3 +95,4 @@ Usage Example (Minimal)
    second_path = "./data/slide_B.svs"
 
    calculate_hamming_distance(first_path, second_path, rotation=0, resizepercentage=10)
+
